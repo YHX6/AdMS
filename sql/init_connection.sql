@@ -1,14 +1,7 @@
-Drop user if exists 'jgchuanmei'@'localhost';
+Drop user if exists 'adms'@'localhost';
 
 
- CREATE USER 'jgchuanmei'@'localhost' IDENTIFIED BY 'jgchuanmei';
+ CREATE USER 'adms'@'localhost' IDENTIFIED BY 'adms';
  
- GRANT ALL PRIVILEGES ON * . * TO 'jgchuanmei'@'localhost';
+ GRANT ALL PRIVILEGES ON * . * TO 'adms'@'localhost';
  
- 
- -- Drop user first if they exist
-DROP USER if exists 'springstudent'@'localhost' ;
-
--- Now create user with prop privileges
-CREATE USER 'springstudent'@'localhost' IDENTIFIED BY 'springstudent';
-GRANT ALL PRIVILEGES ON * . * TO 'springstudent'@'localhost';

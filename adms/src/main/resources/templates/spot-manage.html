@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>点位修改删除</title>
+
+  <!-- ================= Favicon ================== -->
+  <!-- Standard -->
+  <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff" />
+  <!-- Retina iPad Touch Icon-->
+  <link
+          rel="apple-touch-icon"
+          sizes="144x144"
+          href="http://placehold.it/144.png/000/fff"
+  />
+  <!-- Retina iPhone Touch Icon-->
+  <link
+          rel="apple-touch-icon"
+          sizes="114x114"
+          href="http://placehold.it/114.png/000/fff"
+  />
+  <!-- Standard iPad Touch Icon-->
+  <link
+          rel="apple-touch-icon"
+          sizes="72x72"
+          href="http://placehold.it/72.png/000/fff"
+  />
+  <!-- Standard iPhone Touch Icon-->
+  <link
+          rel="apple-touch-icon"
+          sizes="57x57"
+          href="http://placehold.it/57.png/000/fff"
+  />
+
+  <!-- Styles -->
+  <link href="/css/lib/font-awesome.min.css" rel="stylesheet" />
+  <link href="/css/lib/themify-icons.css" rel="stylesheet" />
+  <link href="/css/lib/jsgrid/jsgrid-theme.min.css" rel="stylesheet" />
+  <link href="/css/lib/menubar/sidebar.css" rel="stylesheet" />
+  <link href="/css/lib/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/lib/helper.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet" />
+  <link href="/css/styleJG.css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+  <div class="nano">
+    <div class="nano-content">
+      <div class="logo">
+        <a href="/ads"
+        ><span>Menu</span></a
+        >
+      </div>
+      <ul>
+        <li class="label">Ad management</li>
+        <li>
+          <a href="/ads"
+          ><i class="ti-layout-grid4-alt"></i> Ad expiration query
+          </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_MANAGER')">
+          <a href="/ads-shangai"
+          ><i class="ti-file"></i> Ad modification and deletion
+          </a>
+        </li>
+        <li sec:authorize="hasRole('ROLE_MANAGER')">
+          <a href="/ads-form"
+          ><i class="ti-files"></i> Ad creation
+          </a>
+        </li>
+
+        <li class="label">Spot Management</li>
+        <li>
+          <a href="/spots-view"
+          >  <i class="ti-panel"></i>   Spot status query
+          </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_MANAGER')">
+          <a href="/spots"
+          >  <i class="ti-panel"></i>   Spot modification and deletion
+          </a>
+        </li>
+
+
+        <li class="label" sec:authorize="hasRole('ROLE_ADMIN')">User Management</li>
+
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+          <a href="/records"><i class="ti-eye"></i>  Operation record query</a>
+        </li>
+
+
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+          <a href="/users"><i class="ti-user"></i>  Account management</a>
+        </li>
+
+        <li class="label">Operation</li>
+
+        <li>
+          <a href="/reset-password" ><i class="ti-settings"></i> Change Password</a>
+          <!--              <a th:href="'/reset-password/' +${#authentication.principal.username}" ><i class="ti-settings"></i> 修改密码</a>-->
+        </li>
+
+        <li>
+          <a href="/logout" onclick="return confirm('Continue to log out？')"><i class="ti-close"></i> Log out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- /# sidebar -->
+
+<div class="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="float-left">
+          <div class="hamburger sidebar-toggle">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+        <div class="float-right">
+          <div class="dropdown dib">
+            <div class="header-icon" data-toggle="dropdown">
+                  <span class="user-avatar" th:text="'您好: ' + ${#authentication.principal.name} + '! '"
+                  >John
+
+                  </span><span><i class="ti-angle-down f-s-10"></i></span>
+
+              <div
+                      class="drop-down dropdown-profile dropdown-menu dropdown-menu-right"
+              >
+                <div class="dropdown-content-heading">
+                  <div class="text-left text-user-info" th:text="'用户名：' + ${#authentication.principal.username}"></div>
+                  <div class="text-left text-user-info" th:text="'手机号：' + ${#authentication.principal.phoneNumber}"></div>
+                  <p class="text-left text-user-info text-user-role" th:text="'权限：' + ${#authentication.principal.topAuthority}"></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <div class="main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8 p-r-0 title-margin-right">
+          <div class="page-header">
+            <div class="page-title">
+              <h1>广告点位管理<span></span></h1>
+            </div>
+          </div>
+        </div>
+        <!-- /# column -->
+        <div class="col-lg-4 p-l-0 title-margin-left">
+          <div class="page-header">
+            <div class="page-title">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">点位管理</li>
+                <li class="breadcrumb-item active">点位修改删除</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /# column -->
+      </div>
+      <!-- /# row -->
+      <div id="main-content">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="compose-email">
+                  <div class="mail-box">
+                    <!-- left side form -->
+                    <aside class="sm-side">
+                      <div class="spot-add-title"><span class="btn-spot-add"><i class="fa fa-plus"></i>新增</span></div>
+                      <div class="spot-update-title"><span class="btn-spot-update"><i class="ti-pencil"></i>修改</span></div>
+                      <div class="spot-switch"><button class="spot-swicth-btn btn" onclick="switchFormAdd()"><i class="ti-arrows-horizontal"></i></button></div>
+
+<!--                      add form-->
+                      <form action="#" th:action="@{/spots/save}" th:object="${spot}" method="post" class="spot-add-form">
+<!--                        <label for="spot-id" class="spot-add-label">广告位ID<span class="warning warning-id"></span></label>-->
+<!--                        <input name="spot-id" id="spot-id" type="text" class="spot-add-input" th:field="*{id}">-->
+
+                        <div class="add-type-block form-block">
+                          <label for="spot-add-type" class="spot-add-label">类型</label>
+                          <select name="spot-add-type" id="spot-add-type" class="classic spot-add-select"  th:field="*{type}" >
+                            <option value="站内">站内</option>
+                            <option value="列车">列车</option>
+                          </select>
+                        </div>
+
+                        <div class="add-station-block form-block">
+                          <label for="spot-add-station" class="spot-add-label">车站号<span class="warning warning-add-station"></span></label>
+                          <input name="spot-add-station" id="spot-add-station" type="text" class="spot-add-input" th:field="*{station}">
+                        </div>
+
+                        <div class="add-spotNumber-block form-block">
+                          <label for="spot-add-spotNumber" class="spot-add-label">点位编号<span class="warning warning-add-spotNumber"></span></label>
+                          <input name="spot-add-spotNumber" id="spot-add-spotNumber" type="text" class="spot-add-input" th:field="*{spotNumber}" >
+                        </div>
+
+                        <div class="add-train-block form-block">
+                          <label for="spot-add-train" class="spot-add-label">列车号<span class="warning warning-add-train"></span></label>
+                          <input name="spot-add-train" id="spot-add-train" type="text" class="spot-add-input" th:field="*{train}">
+                        </div>
+
+
+                        <div class="add-status-block form-block">
+                          <label for="spot-add-status" class="spot-add-label">状态<span class="warning warning-add-status"></span></label>
+<!--                          <input name="spot-status" id="spot-status" type="text" class="spot-add-input" th:field="*{status}">-->
+                          <select name="spot-add-status" id="spot-add-status" class="classic spot-add-select"  th:field="*{status}" >
+                            <option value="/"></option>
+                            <option value="已占用">已占用</option>
+                            <option value="未占用">未占用</option>
+                            <option value="其他">其他</option>
+                          </select>
+                        </div>
+
+                        <div class="add-remark-block form-block">
+                          <label for="spot-add-remark" class="spot-add-label">备注<span class="warning warning-add-remark"></span></label>
+                          <input name="spot-add-remark" id="spot-add-remark" type="text" class="spot-add-input" th:field="*{remark}">
+                        </div>
+
+                        <button type="submit" class="btn btn-success spot-add-btn">提交</button>
+                      </form>
+<!--                        update form-->
+                      <form action="#" th:action="@{/spots/save}" th:object="${spot2}" method="post" class="spot-update-form">
+
+                        <input name="spot-id" id="spot-id" type="hidden" class="spot-update-input" th:field="*{id}">
+
+                        <div class="update-type-block form-block">
+                          <label for="spot-update-type" class="spot-update-label">类型</label>
+                          <select name="spot-update-type" id="spot-update-type" class="classic spot-update-select"  th:field="*{type}" >
+                            <option value="站内">站内</option>
+                            <option value="列车">列车</option>
+                          </select>
+                        </div>
+
+                        <div class="update-station-block form-block">
+                          <label for="spot-update-station" class="spot-update-label">车站号<span class="warning warning-update-station"></span></label>
+                          <input name="spot-update-station" id="spot-update-station" type="text" class="spot-update-input" th:field="*{station}">
+                        </div>
+
+                        <div class="update-spotNumber-block form-block">
+                          <label for="spot-update-spotNumber" class="spot-update-label">点位编号<span class="warning warning-update-spotNumber"></span></label>
+                          <input name="spot-update-spotNumber" id="spot-update-spotNumber" type="text" class="spot-update-input" th:field="*{spotNumber}" >
+                        </div>
+
+                        <div class="update-train-block form-block">
+                          <label for="spot-update-train" class="spot-update-label">列车号<span class="warning warning-update-train"></span></label>
+                          <input name="spot-update-train" id="spot-update-train" type="text" class="spot-update-input" th:field="*{train}">
+                        </div>
+
+
+                        <div class="update-status-block form-block">
+                          <label for="spot-update-status" class="spot-update-label">状态<span class="warning warning-update-status"></span></label>
+                          <!--                          <input name="spot-status" id="spot-status" type="text" class="spot-add-input" th:field="*{status}">-->
+                          <select name="spot-update-status" id="spot-update-status" class="classic spot-update-select"  th:field="*{status}" >
+                            <option value="/"></option>
+                            <option value="已占用">已占用</option>
+                            <option value="未占用">未占用</option>
+                            <option value="其他">其他</option>
+                          </select>
+                        </div>
+
+                        <div class="update-remark-block form-block">
+                          <label for="spot-update-remark" class="spot-update-label">备注<span class="warning warning-update-remark"></span></label>
+                          <input name="spot-update-remark" id="spot-update-remark" type="text" class="spot-update-input" th:field="*{remark}">
+                        </div>
+
+                        <button type="submit" class="btn btn-success spot-update-btn">提交</button>
+                      </form>
+                    </aside>
+
+                    <!-- right side table -->
+                    <aside class="lg-side">
+                      <div class="table-responsive">
+                        <table id="row-select" class="display table table-borderd table-hover ad-sc-table" style="width:100%" >
+                          <thead>
+                          <tr class="search-bar-tablerow">
+                            <th rowspan="1" colspan="1">
+                              <input class="form-control search-bar-input" name="search-bar-id"  type="text" id="search-bar-id" >
+                            </th>
+                            <th rowspan="1" colspan="1">
+                              <select class="form-control search-bar-select"  id="search-bar-type">
+                                <option value=""></option>
+                                <option value="站内">站内</option>
+                                <option value="列车">列车</option>
+                              </select>
+                            </th>
+                            <th rowspan="1" colspan="1">
+                              <select class="form-control search-bar-select"  id="search-bar-station">
+
+                              </select>
+                            </th>
+                            <th rowspan="1" colspan="1">
+                              <select class="form-control search-bar-select"  id="search-bar-spotnumber">
+
+                              </select>
+                            </th>
+                            <th rowspan="1" colspan="1">
+                              <select class="form-control search-bar-select"  id="search-bar-train">
+
+                              </select>
+                            </th>
+                            <th rowspan="1" colspan="1">
+                              <select class="form-control search-bar-select"  id="search-bar-status">
+                                <option value=""></option>
+                                <option value="未占用">未占用</option>
+                                <option value="已占用">已占用</option>
+                                <option value="其他">其他</option>
+                              </select>
+                            </th>
+                            <th></th>
+                            <th rowspan="1" colspan="1">
+                              <a class="clean-search-btn btn a-btn" href="/spots">清空搜索</a>
+
+                            </th>
+
+                          </tr>
+                            <tr>
+                              <th >点位ID</th>
+                              <th >类型</th>
+                              <th >车站号</th>
+                              <th >点位编号</th>
+                              <th >列车号</th>
+                              <th > 状态</th>
+                              <th style="width:15%">备注</th>
+                              <th style="width:10%">操作</th>
+                            </tr>
+                          </thead>
+
+                          <tbody  id="dashboard-table-body" >
+                          <tr class="table-body" th:each="spot:${spots}">
+                            <td th:id="'id_' + ${spot.id}" th:text="${spot.id}"></td>
+                            <td th:id="'type_' + ${spot.id}" th:text="${spot.getType()}"></td>
+                            <td th:id="'station_' + ${spot.id}" th:text="${spot.getStation()}"></td>
+                            <td th:id="'spotnumber_' + ${spot.id}" th:text="${spot.getSpotNumber()}"></td>
+                            <td th:id="'train_' + ${spot.id}" th:text="${spot.getTrain()}"></td>
+                            <td th:id="'status_' + ${spot.id}" th:text="${spot.getStatus()}"></td>
+                            <td th:id="'remark_' + ${spot.id}" th:text="${spot.getRemark()}"></td>
+                            <td>
+                              <div class="operation-btns">
+<!--                                <button class="update-btn btn" th:id="'update-btn_' + ${spot.id}" onclick="selectUserForm(this.id)">修改</button>-->
+                                <span class="jsgrid-button jsgrid-edit-button ti-pencil" type="button" title="Edit" th:id="'update-btn_' + ${spot.id}" onclick="selectUserForm(this.id)"></span>
+                                <a  th:id="'delete-btn_' + ${spot.id}" th:href="@{/spots/delete(id=${spot.id})}" onclick="return deleteSpot(event)"><span class="jsgrid-button jsgrid-delete-button ti-trash" type="button" title="Delete"></span></a>
+                              </div>
+                            </td>
+                          </tr>
+                          </tbody>
+
+                        </table>
+                        <div th:if="${totalPages>1}" class="page-block" id="page-block">
+                          <div class="page-bar" id="page-bar">
+                            <div>
+                              <a  th:href="@{'/spots/page/' + ${1}}">首页</a>
+                            </div>
+                            <div>
+                              <a th:if="${currentPage > 1}" th:href="@{'/spots/page/' + ${currentPage - 1}}">上一页</a>
+                            </div>
+                            <div>
+                              <a th:if="${currentPage -3 > 0}" >...</a>
+                            </div>
+                            <div>
+                              <a th:if="${currentPage -2 > 0}" th:href="@{'/spots/page/' + ${currentPage - 2}}">[[${currentPage - 2}]]</a>
+                            </div>
+                            <div>
+                              <a th:if="${currentPage -1 > 0}" th:href="@{'/spots/page/' + ${currentPage - 1}}">[[${currentPage - 1}]]</a>
+                            </div>
+                            <div>
+                              <a  th:href="@{'/spots/page/' + ${currentPage}}" class="page-bar-cur">[[${currentPage}]]</a>
+                            </div>
+
+                            <div>
+                              <a th:if="${currentPage +1 <= totalPages}" th:href="@{'/spots/page/' + ${currentPage + 1}}">[[${currentPage + 1}]]</a>
+
+                            </div>
+                            <div>
+                              <a th:if="${currentPage +2 <= totalPages}" th:href="@{'/spots/page/' + ${currentPage +2}}">[[${currentPage + 2}]]</a>
+
+                            </div>
+                            <div>
+                              <a th:if="${currentPage +3 <= totalPages}" >...</a>
+
+                            </div>
+                            <div>
+                              <a th:if="${currentPage < totalPages}" th:href="@{'/spots/page/' + ${currentPage + 1}}">下一页</a>
+                            </div>
+                            <div>
+                              <a  th:href="@{'/spots/page/' + ${totalPages}}">尾页</a>
+                            </div>
+                          </div>
+                          <div class="page-total-count" ><div id="page-total-count">总记录数:[[${totalItems}]]</div></div>
+
+                        </div>
+
+                      </div>
+                    </aside>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="footer">
+              <p>Copyright ©XYH6. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<!-- script -->
+<!--<script src="../js/lib/jquery.min.js"></script>-->
+<!--<script src="../js/lib/jquery.nanoscroller.min.js"></script>-->
+<!--<script src="../js/lib/menubar/sidebar.js"></script>-->
+<!--<script src="../js/lib/preloader/pace.min.js"></script>-->
+<!--<script src="../js/lib/bootstrap.min.js"></script>-->
+<!--<script src="../js/scripts.js"></script>-->
+<!--<script src="../js/scriptJG_spotmanage.js"></script>-->
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/jquery.nanoscroller.min.js"></script>
+<script src="/js/lib/menubar/sidebar.js"></script>
+<script src="/js/lib/preloader/pace.min.js"></script>
+<script src="/js/lib/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+<script src="/js/scriptJG_spotmanage.js"></script>
+
+</html>
