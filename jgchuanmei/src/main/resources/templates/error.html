@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link href="/css/styleJG_error.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="background"></div>
+    <div class="top">
+        <h1>Error</h1>
+        <h3>Something goes wrong</h3>
+    </div>
+    <div class="container">
+        <div class="ghost-copy">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+        </div>
+        <div class="ghost">
+            <div class="face">
+                <div class="eye"></div>
+                <div class="eye-right"></div>
+                <div class="mouth"></div>
+            </div>
+        </div>
+        <div class="shadow"></div>
+    </div>
+    <div class="bottom">
+        <p th:text="'错误类型: ' + ${error}"></p><br><br>
+        <p>页面错误，请联系系统管理员!</p>
+
+        <div class="buttons">
+            <button class="btn" onclick="history.go(-1)">返回上一页</button>
+            <a class="btn" href="/">返回主页</a>
+        </div>
+    </div>
+
+
+</body>
+</html>

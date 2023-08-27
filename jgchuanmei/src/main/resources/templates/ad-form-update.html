@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>广告修改</title>
+
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" href="http://placehold.it/64.png/000/fff" />
+    <!-- Retina iPad Touch Icon-->
+    <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="http://placehold.it/144.png/000/fff"
+    />
+    <!-- Retina iPhone Touch Icon-->
+    <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="http://placehold.it/114.png/000/fff"
+    />
+    <!-- Standard iPad Touch Icon-->
+    <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="http://placehold.it/72.png/000/fff"
+    />
+    <!-- Standard iPhone Touch Icon-->
+    <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="http://placehold.it/57.png/000/fff"
+    />
+
+    <!-- Styles -->
+    <link href="/css/lib/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/lib/themify-icons.css" rel="stylesheet" />
+    <link href="/css/lib/jsgrid/jsgrid-theme.min.css" rel="stylesheet" />
+    <link href="/css/lib/menubar/sidebar.css" rel="stylesheet" />
+    <link href="/css/lib/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/lib/helper.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/styleJG.css" rel="stylesheet" />
+
+</head>
+
+<body>
+<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+    <div class="nano">
+        <div class="nano-content">
+            <div class="logo">
+                <a href="/ads"
+                ><span>菜单</span></a
+                >
+            </div>
+            <ul>
+                <li class="label">广告管理</li>
+                <li>
+                    <a href="/ads"
+                    ><i class="ti-layout-grid4-alt"></i> 广告到期查询
+                    </a>
+                </li>
+
+                <li sec:authorize="hasRole('ROLE_MANAGER')">
+                    <a href="/ads-shangai"
+                    ><i class="ti-file"></i> 广告修改删除
+                    </a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_MANAGER')">
+                    <a href="/ads-form"
+                    ><i class="ti-files"></i> 新增广告上刊
+                    </a>
+                </li>
+
+                <li class="label">点位管理</li>
+                <li>
+                    <a href="/spots-view"
+                    >  <i class="ti-panel"></i>   点位状态查询
+                    </a>
+                </li>
+
+                <li sec:authorize="hasRole('ROLE_MANAGER')">
+                    <a href="/spots"
+                    >  <i class="ti-panel"></i>   点位修改删除
+                    </a>
+                </li>
+
+
+                <li class="label" sec:authorize="hasRole('ROLE_ADMIN')">用户管理</li>
+
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a href="/records"><i class="ti-eye"></i>  操作记录查询</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a href="/users"><i class="ti-user"></i>  账号权限管理</a>
+                </li>
+
+                <li class="label">登录操作</li>
+
+                <li>
+                    <a href="/reset-password" ><i class="ti-settings"></i> 修改密码</a>
+<!--                    <a th:href="'/reset-password/' +${#authentication.principal.username}" ><i class="ti-settings"></i> 修改密码</a>-->
+                </li>
+
+                <li>
+                    <a href="/logout" onclick="return confirm('是否退出登录？')"><i class="ti-close"></i> 退出登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /# sidebar -->
+
+<div class="header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="float-left">
+                    <div class="hamburger sidebar-toggle">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <div class="dropdown dib">
+                        <div class="header-icon" data-toggle="dropdown">
+                  <span class="user-avatar" th:text="'您好: ' + ${#authentication.principal.name} + '! '"
+                  >John
+
+                  </span><span><i class="ti-angle-down f-s-10"></i></span>
+
+                            <div
+                                    class="drop-down dropdown-profile dropdown-menu dropdown-menu-right"
+                            >
+                                <div class="dropdown-content-heading">
+                                    <div class="text-left text-user-info" th:text="'用户名：' + ${#authentication.principal.username}"></div>
+                                    <div class="text-left text-user-info" th:text="'手机号：' + ${#authentication.principal.phoneNumber}"></div>
+                                    <p class="text-left text-user-info text-user-role" th:text="'权限：' + ${#authentication.principal.topAuthority}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 p-r-0 title-margin-right">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h1>广告记录修改<span></span></h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+                <div class="col-lg-4 p-l-0 title-margin-left">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">广告管理</li>
+                                <li class="breadcrumb-item active">广告修改</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+            </div>
+            <!-- /# row -->
+            <div id="main-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+
+                            <div class="form-validation">
+                                <form class="form-valide" action="#" th:action="@{/ads-update/submit}"  method="post"   enctype="multipart/form-data">
+                                    <span class="text-danger warning-error">[[${error}]]</span>
+                                    <!--id-->
+
+
+                                    <div class="form-group row" id="ad-form-id-block">
+                                        <label class="col-lg-4 col-form-label" for="ad-form-id" >记录ID </label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="ad-form-id" name="ad-form-id" readonly th:value="${id}" />
+                                        </div>
+                                    </div>
+
+                                    <!--combo selection-->
+                                    <!--1.chezhan/ lieche-->
+                                    <div class="form-group row" id="ajax-type-block">
+                                        <label class="col-lg-4 col-form-label" for="ad-form-type"
+                                        >车站/列车 <span class="text-danger warning-type">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <select
+                                                    class="js-select2 form-control"
+                                                    id="ad-form-type"
+                                                    name="ad-form-type"
+                                                    style="width: 100%"
+
+                                            >
+                                                <option value=""></option>
+                                                <option value="站内">站内</option>
+                                                <option value="列车">列车</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--2.station-->
+                                    <div class="form-group row" id="ajax-station-block">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-station"
+                                        >站点<span class="text-danger">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <select
+                                                    class="js-select2 form-control"
+                                                    id="ad-form-station"
+                                                    name="ad-form-station"
+                                                    style="width: 100%"
+
+                                            >
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--3.spot number-->
+                                    <div class="form-group row" id="ajax-spotnumber-block">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-spotNumber"
+                                        >序号
+                                            <span class="text-danger">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <select
+                                                    class="js-select2 form-control"
+                                                    id="ad-form-spotNumber"
+                                                    name="ad-form-spotNumber"
+                                                    style="width: 100%"
+
+                                            >
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!--4.train-->
+                                    <div class="form-group row" id="ajax-train-block">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-train"
+                                        >列车号 <span class="text-danger">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <select
+                                                    class="js-select2 form-control"
+                                                    id="ad-form-train"
+                                                    name="ad-form-train"
+                                                    style="width: 100%"
+
+                                            >
+                                                <option value=""></option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- ad type-->
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="ad-form-adtype" >广告形式
+                                            <span class="text-danger">*</span></label>
+                                        <div class="col-lg-8">
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="ad-form-adtype"
+                                                    name="ad-form-adtype"
+
+                                            />
+                                        </div>
+                                    </div>
+                                    <!--industry type-->
+                                    <div class="form-group row">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-industrytype"
+                                        >行业分类 <span class="text-danger">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="ad-form-industrytype"
+                                                    name="ad-form-industrytype"
+
+                                            />
+                                        </div>
+                                    </div>
+                                    <!--content-->
+                                    <div class="form-group row">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-content"
+                                        >内容 <span class="text-danger">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <textarea id="ad-form-content" name="ad-form-content" rows="4"  class="form-textarea"></textarea>
+                                        </div>
+                                    </div>
+                                    <!--company-->
+                                    <div class="form-group row">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-company"
+                                        >结算单位 <span class="text-danger">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="ad-form-company"
+                                                    name="ad-form-company"
+                                            />
+                                        </div>
+                                    </div>
+                                    <!--ddl-->
+                                    <div class="form-group row" id="update-date-block">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-ddl"
+                                        >到期时间 <span class="text-danger">*</span></label
+                                        >
+                                        <div class="col-lg-8">
+                                            <input
+                                                    type="date"
+                                                    class="datechooser"
+                                                    id="ad-form-ddl"
+                                                    name="ad-form-ddl"
+                                            />
+                                        </div>
+                                    </div>
+                                    <!--picture-->
+                                    <div class="form-group row" id="ad-form-check-block">
+                                        <div class="col-lg-4 col-form-label check-picture-label">
+                                            <div>是否重新上传图片:</div>
+
+                                            <div class="col-lg-4">
+                                                <input
+                                                        type="checkbox"
+                                                        class="checkbox"
+                                                        id="ad-form-check"
+                                                        name="ad-form-check"
+                                                        value="true"
+                                                />
+                                                <label
+                                                        for="ad-form-check"
+                                                >是 </label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group row" id="update-form-picture-block">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-picture"
+                                        >图片 </label
+                                        >
+                                        <div class="col-lg-8">
+                                            <input
+                                                    type="file"
+                                                    class="filechooser"
+                                                    id="ad-form-picture"
+                                                    name="ad-form-picture"
+                                            />
+                                        </div>
+                                    </div>
+                                    <!--remark-->
+                                    <div class="form-group row">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-remark"
+                                        >备注 </label>
+                                        <div class="col-lg-8">
+                                            <textarea id="ad-form-remark" name="ad-form-remark" rows="4"  class="form-textarea" ></textarea>
+                                        </div>
+                                    </div>
+                                    <!--isdroped-->
+                                    <div class="form-group row">
+                                        <label
+                                                class="col-lg-4 col-form-label"
+                                                for="ad-form-isdroped"
+                                        >是否已下刊 </label>
+                                        <div class="col-lg-8">
+                                            <select
+                                                    class="js-select2 form-control"
+                                                    id="ad-form-isdroped"
+                                                    name="ad-form-isdroped"
+                                                    style="width: 100%"
+                                            >
+                                                <option value=""></option>
+                                                <option value="true">已下刊</option>
+                                                <option value="false">未下刊</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-block">提交</button>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="footer">
+                            <p>Copyright ©XYH6. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- script -->
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/jquery.nanoscroller.min.js"></script>
+<script src="/js/lib/menubar/sidebar.js"></script>
+<script src="/js/lib/preloader/pace.min.js"></script>
+<script src="/js/lib/select2/select2.full.min.js"></script>
+<script src="/js/lib/bootstrap.min.js"></script>
+<script src="/js/scripts.js"></script>
+<script src="/js/scriptJG_adform-update.js"></script>
+</html>

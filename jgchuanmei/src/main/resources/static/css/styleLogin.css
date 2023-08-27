@@ -1,0 +1,72 @@
+.bg-primary{
+
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #2575fc;
+    background: -webkit-linear-gradient(left,#6a11cb,#2575fc);
+    background: -o-linear-gradient(left,#6a11cb,#2575fc);
+    background: -moz-linear-gradient(left,#6a11cb,#2575fc);
+    background: linear-gradient(left,#6a11cb,#2575fc);
+}
+
+.login-form{
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.login-form-btn{
+
+    font-family: Ubuntu-Bold;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 160px;
+    height: 42px;
+    border-radius: 21px;
+    background: #d41872;
+    background: -webkit-linear-gradient(left,#a445b2,#d41872,#fa4299);
+    background: -o-linear-gradient(left,#a445b2,#d41872,#fa4299);
+    background: -moz-linear-gradient(left,#a445b2,#d41872,#fa4299);
+    background: linear-gradient(left,#a445b2,#d41872,#fa4299);
+    position: relative;
+    z-index: 1;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
+
+.login-form-btn:hover{
+    background-color: #555;
+}
+
+
+
+.login-error-text{
+    margin-top: 10px;
+    color: red;
+}
+
+.login-form-heading{
+    font-size: 30px;
+    font-weight: 800;
+}
+
