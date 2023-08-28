@@ -63,9 +63,9 @@ function displayTable(response){
     body.innerHTML = inner;
     let has = response["currentPage"]*10> response["totalItems"] ? response["totalItems"] : response["currentPage"]*10;
     if(has === response["totalItems"]){
-        document.getElementById("page-block").innerHTML = "<div class='load-span'></div><div>记录数:"+  has + "/" + response["totalItems"] + "</div>";
+        document.getElementById("page-block").innerHTML = "<div class='load-span'></div><div>Total:"+  has + "/" + response["totalItems"] + "</div>";
     }else{
-        document.getElementById("page-block").innerHTML = "<div class='load-span'><button class='load-btn' onclick='getAllByQuery("+ (response["currentPage"] + 1) +")'>加载记录...</button></div><div>记录数:"+  has + "/" + response["totalItems"] + "</div>";
+        document.getElementById("page-block").innerHTML = "<div class='load-span'><button class='load-btn' onclick='getAllByQuery("+ (response["currentPage"] + 1) +")'>Loading...</button></div><div>Total:"+  has + "/" + response["totalItems"] + "</div>";
     }
 
 }
@@ -138,7 +138,7 @@ function displayChart(){
     $.get("/charts/pie", function (response){
         // console.log(response);
         let data = {
-            labels: ["已占用", "未占用","其他"],
+            labels: ["Occupied", "Available","Other"],
             datasets: [
                 {
                     fill: true,
@@ -163,7 +163,7 @@ function displayChart(){
                 rotation: -0.7 * Math.PI,
                 title: {
                     display: true,
-                    text: '点位占用情况图(%)'
+                    text: 'Spot Occupation Chart(%)'
                 }
             }
 
@@ -179,7 +179,7 @@ function displayChart(){
             labels: response[0],
             datasets: [
                 {
-                    label: '各车站正在上刊的广告数',
+                    label: 'Currently Occupied Spots',
                     data: response[1],
                     backgroundColor: 'rgba(255, 99, 132, 0.5)',
                     borderColor:
@@ -187,7 +187,7 @@ function displayChart(){
                     borderWidth: 1
                 },
                 {
-                    label: '各车站广告位总数',
+                    label: 'Total Spots per Station',
                     data: response[2],
                     backgroundColor:   'rgba(54, 162, 235, 0.5)',
                     borderColor:
@@ -212,7 +212,7 @@ function displayChart(){
                 },
                 title: {
                     display: true,
-                    text: '各站点销售情况'
+                    text: 'Occupation rate per Station'
                 }
             }
         });

@@ -14,7 +14,7 @@ window.onload = function (){
 
 
 $('#spot-add-type').change(function(){
-    if($(this).val() === "站内"){
+    if($(this).val() === "In_station"){
         $(".add-station-block").show();
         $("#spot-add-station").val("");
 
@@ -91,7 +91,7 @@ function switchFormAdd(){
 }
 
 function deleteSpot(event) {
-    return confirm("确定删除该广告点位？");
+    return confirm("Are you sure to delete this spot？");
 }
 
 // add check for add form
@@ -106,10 +106,10 @@ function deleteSpot(event) {
         const stationwarning = document.querySelector(".warning-add-station");
         stationwarning.innerHTML = "";
         if (!station) {
-            stationwarning.innerHTML = "车站号为空！";
+            stationwarning.innerHTML = "Spot is required！";
             invalid = true;
         } else if (station.length > 20) {
-            stationwarning.innerHTML = "车站号长度应小于20！！";
+            stationwarning.innerHTML = "Spot name should be less than 20 characters！";
             invalid = true;
         }
 
@@ -117,10 +117,10 @@ function deleteSpot(event) {
         const spotNumberwarning = document.querySelector(".warning-add-spotNumber");
         spotNumberwarning.innerHTML = "";
         if (!spotNumber) {
-            spotNumberwarning.innerHTML = "点位编号为空！";
+            spotNumberwarning.innerHTML = "Spot number is required！";
             invalid = true;
         } else if (spotNumber.length > 20) {
-            spotNumberwarning.innerHTML = "点位编号长度应小于20！！";
+            spotNumberwarning.innerHTML = "Spot number should be less than 20 characters！";
             invalid = true;
         }
 
@@ -128,10 +128,10 @@ function deleteSpot(event) {
         const trainwarning = document.querySelector(".warning-add-train");
         trainwarning.innerHTML = "";
         if (!train) {
-            trainwarning.innerHTML = "列车号为空！";
+            trainwarning.innerHTML = "Train is required！";
             invalid = true;
         } else if (train.length > 20) {
-            trainwarning.innerHTML = "列车号长度应小于20！！";
+            trainwarning.innerHTML = "Train name should be less than 20 characters！";
             invalid = true;
         }
 
@@ -139,7 +139,7 @@ function deleteSpot(event) {
         const statuswarning = document.querySelector(".warning-add-status");
         statuswarning.innerHTML = "";
         if (status === "/") {
-            statuswarning.innerHTML = "请选择占用状态！！";
+            statuswarning.innerHTML = "Select status！";
             invalid = true;
         }
 
@@ -147,7 +147,7 @@ function deleteSpot(event) {
         const remarkwarning = document.querySelector(".warning-add-remark");
         remarkwarning.innerHTML = "";
         if (remark.length > 255) {
-            remarkwarning.innerHTML = "备注长度应小于255！";
+            remarkwarning.innerHTML = "Remark should be less than 255 characters";
             invalid = true;
         }
 
@@ -156,7 +156,7 @@ function deleteSpot(event) {
         if (invalid) {
             e.preventDefault();
         }else{
-            alert("提交成功!");
+            alert("Submitted!");
         }
 
     });
@@ -173,10 +173,10 @@ function deleteSpot(event) {
         const stationwarning = document.querySelector(".warning-update-station");
         stationwarning.innerHTML = "";
         if (!station) {
-            stationwarning.innerHTML = "车站号为空！";
+            stationwarning.innerHTML = "Station is required！";
             invalid = true;
         } else if (station.length > 20) {
-            stationwarning.innerHTML = "车站号长度应小于20！！";
+            stationwarning.innerHTML = "Station name should be less than 20 characters！";
             invalid = true;
         }
 
@@ -184,10 +184,10 @@ function deleteSpot(event) {
         const spotNumberwarning = document.querySelector(".warning-update-spotNumber");
         spotNumberwarning.innerHTML = "";
         if (!spotNumber) {
-            spotNumberwarning.innerHTML = "点位编号为空！";
+            spotNumberwarning.innerHTML = "Spot number is required！";
             invalid = true;
         } else if (spotNumber.length > 20) {
-            spotNumberwarning.innerHTML = "点位编号长度应小于20！！";
+            spotNumberwarning.innerHTML = "Spot number should be less than 20 characters！";
             invalid = true;
         }
 
@@ -195,10 +195,10 @@ function deleteSpot(event) {
         const trainwarning = document.querySelector(".warning-update-train");
         trainwarning.innerHTML = "";
         if (!train) {
-            trainwarning.innerHTML = "列车号为空！";
+            trainwarning.innerHTML = "Train is required！";
             invalid = true;
         } else if (train.length > 20) {
-            trainwarning.innerHTML = "列车号长度应小于20！！";
+            trainwarning.innerHTML = "Train name should be less than 20 characters！";
             invalid = true;
         }
 
@@ -206,7 +206,7 @@ function deleteSpot(event) {
         const statuswarning = document.querySelector(".warning-update-status");
         statuswarning.innerHTML = "";
         if (status === "/") {
-            statuswarning.innerHTML = "请选择占用状态！！";
+            statuswarning.innerHTML = "Select status！";
             invalid = true;
         }
 
@@ -214,7 +214,7 @@ function deleteSpot(event) {
         const remarkwarning = document.querySelector(".warning-update-remark");
         remarkwarning.innerHTML = "";
         if (remark.length > 255) {
-            remarkwarning.innerHTML = "备注长度应小于255！";
+            remarkwarning.innerHTML = "Remark should be less than 255 characters！";
             invalid = true;
         }
 
@@ -223,7 +223,7 @@ function deleteSpot(event) {
         if (invalid) {
             e.preventDefault();
         }else{
-            alert("提交修改成功!");
+            alert("Submitted!");
         }
 
     });
@@ -288,9 +288,9 @@ function displayTable(response){
     body.innerHTML = inner;
     let has = response["currentPage"]*10> response["totalItems"] ? response["totalItems"] : response["currentPage"]*10;
     if(has === response["totalItems"]){
-        document.getElementById("page-block").innerHTML = "<div class='load-span'></div><div>记录数:"+  has + "/" + response["totalItems"] + "</div>";
+        document.getElementById("page-block").innerHTML = "<div class='load-span'></div><div>Total:"+  has + "/" + response["totalItems"] + "</div>";
     }else{
-        document.getElementById("page-block").innerHTML = "<div class='load-span'><button class='load-btn' onclick='getAllByQuery("+ (response["currentPage"] + 1) +")'>加载记录...</button></div><div>记录数:"+  has + "/" + response["totalItems"] + "</div>";
+        document.getElementById("page-block").innerHTML = "<div class='load-span'><button class='load-btn' onclick='getAllByQuery("+ (response["currentPage"] + 1) +")'>Loading...</button></div><div>Total:"+  has + "/" + response["totalItems"] + "</div>";
     }
 
 }

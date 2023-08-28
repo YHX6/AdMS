@@ -23,10 +23,6 @@ public class Ad {
     @Column(name = "id")
     private Integer id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-////    @JoinColumn(name = "spot_id")
-//    private Spot spot;
-
     @Column(name = "spot_id")
     private Integer spotId;
 
@@ -77,11 +73,11 @@ public class Ad {
         String today = sdf.format(cal.getTime());
 
         if(isdroped){
-            return "已下刊";
+            return "Dropped";
         }else if(ddl.compareTo(today) <= 0){
-            return "已过期";
+            return "Expired";
         }else{
-            return "未过期";
+            return "Non_expired";
         }
     }
 

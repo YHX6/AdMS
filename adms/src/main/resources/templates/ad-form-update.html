@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>广告修改</title>
+    <title>Ad modification and deletion</title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -104,7 +104,7 @@
 
                 <li>
                     <a href="/reset-password" ><i class="ti-settings"></i> Change Password</a>
-                    <!--              <a th:href="'/reset-password/' +${#authentication.principal.username}" ><i class="ti-settings"></i> 修改密码</a>-->
+
                 </li>
 
                 <li>
@@ -130,7 +130,7 @@
                 <div class="float-right">
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
-                  <span class="user-avatar" th:text="'您好: ' + ${#authentication.principal.name} + '! '"
+                  <span class="user-avatar" th:text="'Hi: ' + ${#authentication.principal.name} + '! '"
                   >John
 
                   </span><span><i class="ti-angle-down f-s-10"></i></span>
@@ -139,10 +139,11 @@
                                     class="drop-down dropdown-profile dropdown-menu dropdown-menu-right"
                             >
                                 <div class="dropdown-content-heading">
-                                    <div class="text-left text-user-info" th:text="'用户名：' + ${#authentication.principal.username}"></div>
-                                    <div class="text-left text-user-info" th:text="'手机号：' + ${#authentication.principal.phoneNumber}"></div>
-                                    <p class="text-left text-user-info text-user-role" th:text="'权限：' + ${#authentication.principal.topAuthority}"></p>
+                                    <div class="text-left text-user-info" th:text="'Username：' + ${#authentication.principal.username}"></div>
+                                    <div class="text-left text-user-info" th:text="'Phone：' + ${#authentication.principal.phoneNumber}"></div>
+                                    <p class="text-left text-user-info text-user-role" th:text="'Authority：' + ${#authentication.principal.topAuthority}"></p>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -159,7 +160,7 @@
                 <div class="col-lg-8 p-r-0 title-margin-right">
                     <div class="page-header">
                         <div class="page-title">
-                            <h1>广告记录修改<span></span></h1>
+                            <h1>Ad modification and deletion<span></span></h1>
                         </div>
                     </div>
                 </div>
@@ -168,8 +169,8 @@
                     <div class="page-header">
                         <div class="page-title">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item">广告管理</li>
-                                <li class="breadcrumb-item active">广告修改</li>
+                                <li class="breadcrumb-item">Ad Management</li>
+                                <li class="breadcrumb-item active">Ad modification and deletion</li>
                             </ol>
                         </div>
                     </div>
@@ -189,7 +190,7 @@
 
 
                                     <div class="form-group row" id="ad-form-id-block">
-                                        <label class="col-lg-4 col-form-label" for="ad-form-id" >记录ID </label>
+                                        <label class="col-lg-4 col-form-label" for="ad-form-id" >RecordID </label>
                                         <div class="col-lg-8">
                                             <input type="text" class="form-control" id="ad-form-id" name="ad-form-id" readonly th:value="${id}" />
                                         </div>
@@ -199,7 +200,7 @@
                                     <!--1.chezhan/ lieche-->
                                     <div class="form-group row" id="ajax-type-block">
                                         <label class="col-lg-4 col-form-label" for="ad-form-type"
-                                        >车站/列车 <span class="text-danger warning-type">*</span></label
+                                        >Type <span class="text-danger warning-type">*</span></label
                                         >
                                         <div class="col-lg-8">
                                             <select
@@ -210,8 +211,8 @@
 
                                             >
                                                 <option value=""></option>
-                                                <option value="站内">站内</option>
-                                                <option value="列车">列车</option>
+                                                <option value="In_station">In_station</option>
+                                                <option value="In_train">In_train</option>
                                             </select>
                                         </div>
                                     </div>
@@ -220,7 +221,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-station"
-                                        >站点<span class="text-danger">*</span></label
+                                        >Station<span class="text-danger">*</span></label
                                         >
                                         <div class="col-lg-8">
                                             <select
@@ -239,7 +240,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-spotNumber"
-                                        >序号
+                                        >Spot_number
                                             <span class="text-danger">*</span></label
                                         >
                                         <div class="col-lg-8">
@@ -259,7 +260,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-train"
-                                        >列车号 <span class="text-danger">*</span></label
+                                        >Train <span class="text-danger">*</span></label
                                         >
                                         <div class="col-lg-8">
                                             <select
@@ -276,7 +277,7 @@
                                     </div>
                                     <!-- ad type-->
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="ad-form-adtype" >广告形式
+                                        <label class="col-lg-4 col-form-label" for="ad-form-adtype" >Ad Type
                                             <span class="text-danger">*</span></label>
                                         <div class="col-lg-8">
                                             <input
@@ -293,7 +294,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-industrytype"
-                                        >行业分类 <span class="text-danger">*</span></label
+                                        >Industry <span class="text-danger">*</span></label
                                         >
                                         <div class="col-lg-8">
                                             <input
@@ -310,7 +311,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-content"
-                                        >内容 <span class="text-danger">*</span></label
+                                        >Content <span class="text-danger">*</span></label
                                         >
                                         <div class="col-lg-8">
                                             <textarea id="ad-form-content" name="ad-form-content" rows="4"  class="form-textarea"></textarea>
@@ -321,7 +322,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-company"
-                                        >结算单位 <span class="text-danger">*</span></label
+                                        >Company <span class="text-danger">*</span></label
                                         >
                                         <div class="col-lg-8">
                                             <input
@@ -337,7 +338,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-ddl"
-                                        >到期时间 <span class="text-danger">*</span></label
+                                        >DDL <span class="text-danger">*</span></label
                                         >
                                         <div class="col-lg-8">
                                             <input
@@ -351,7 +352,7 @@
                                     <!--picture-->
                                     <div class="form-group row" id="ad-form-check-block">
                                         <div class="col-lg-4 col-form-label check-picture-label">
-                                            <div>是否重新上传图片:</div>
+                                            <div>Resubmit Image?</div>
 
                                             <div class="col-lg-4">
                                                 <input
@@ -363,7 +364,7 @@
                                                 />
                                                 <label
                                                         for="ad-form-check"
-                                                >是 </label
+                                                >Yes </label
                                                 >
                                             </div>
                                         </div>
@@ -375,7 +376,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-picture"
-                                        >图片 </label
+                                        >Image </label
                                         >
                                         <div class="col-lg-8">
                                             <input
@@ -391,7 +392,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-remark"
-                                        >备注 </label>
+                                        >Remark </label>
                                         <div class="col-lg-8">
                                             <textarea id="ad-form-remark" name="ad-form-remark" rows="4"  class="form-textarea" ></textarea>
                                         </div>
@@ -401,7 +402,7 @@
                                         <label
                                                 class="col-lg-4 col-form-label"
                                                 for="ad-form-isdroped"
-                                        >是否已下刊 </label>
+                                        >Is Dropped </label>
                                         <div class="col-lg-8">
                                             <select
                                                     class="js-select2 form-control"
@@ -410,13 +411,13 @@
                                                     style="width: 100%"
                                             >
                                                 <option value=""></option>
-                                                <option value="true">已下刊</option>
-                                                <option value="false">未下刊</option>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-block">提交</button>
+                                    <button type="submit" class="btn btn-block">Submit</button>
 
                                 </form>
                             </div>

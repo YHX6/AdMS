@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>广告到期查询</title>
+    <title>Ad expiration query</title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -103,7 +103,6 @@
 
                 <li>
                     <a href="/reset-password" ><i class="ti-settings"></i> Change Password</a>
-                    <!--              <a th:href="'/reset-password/' +${#authentication.principal.username}" ><i class="ti-settings"></i> 修改密码</a>-->
                 </li>
 
                 <li>
@@ -129,7 +128,7 @@
                 <div class="float-right">
                     <div class="dropdown dib">
                         <div class="header-icon" data-toggle="dropdown">
-                  <span class="user-avatar" th:text="'您好: ' + ${#authentication.principal.name} + '! '"
+                  <span class="user-avatar" th:text="'Hi: ' + ${#authentication.principal.name} + '! '"
                   >John
 
                   </span><span><i class="ti-angle-down f-s-10"></i></span>
@@ -138,10 +137,11 @@
                                     class="drop-down dropdown-profile dropdown-menu dropdown-menu-right"
                             >
                                 <div class="dropdown-content-heading">
-                                    <div class="text-left text-user-info" th:text="'用户名：' + ${#authentication.principal.username}"></div>
-                                    <div class="text-left text-user-info" th:text="'手机号：' + ${#authentication.principal.phoneNumber}"></div>
-                                    <p class="text-left text-user-info text-user-role" th:text="'权限：' + ${#authentication.principal.topAuthority}"></p>
+                                    <div class="text-left text-user-info" th:text="'Username：' + ${#authentication.principal.username}"></div>
+                                    <div class="text-left text-user-info" th:text="'Phone：' + ${#authentication.principal.phoneNumber}"></div>
+                                    <p class="text-left text-user-info text-user-role" th:text="'Authority：' + ${#authentication.principal.topAuthority}"></p>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                 <div class="col-lg-8 p-r-0 title-margin-right">
                     <div class="page-header">
                         <div class="page-title">
-                            <h1>广告记录到期状态查询<span></span></h1>
+                            <h1>Ad expiration query<span></span></h1>
                         </div>
                     </div>
                 </div>
@@ -167,8 +167,8 @@
                     <div class="page-header">
                         <div class="page-title">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item">广告管理</li>
-                                <li class="breadcrumb-item active">广告到期查询</li>
+                                <li class="breadcrumb-item">Ad Management</li>
+                                <li class="breadcrumb-item active">Ad expiration query</li>
                             </ol>
                         </div>
                     </div>
@@ -182,31 +182,31 @@
 
                         <div class="card">
                             <div class="note-line-dashboard">
-                                <div><span class="red-block"></span>：已过期未下刊广告记录</div>
-                                <div><span class="yellow-block"></span>：七日内到期的广告记录</div>
+                                <div>Invalid Ad(To be dropped):<span class="red-block"></span></div>
+                                <div>Ads expire in seven days:<span class="yellow-block"></span></div>
                             </div>
                             <table id="row-select" class="display table table-borderd table-hover ad-sc-table" style="width:100%" >
                                 <thead>
                                 <tr>
-                                    <th >记录ID</th>
-                                    <th >车站/列车</th>
-                                    <th >站点</th>
-                                    <th >序号</th>
-                                    <th >列车号</th>
-                                    <th > 广告形式</th>
-                                    <th > 行业分类</th>
-                                    <th > 内容</th>
-                                    <th > 结算单位</th>
-                                    <th > 到期时间</th>
-                                    <th > 图片</th>
-                                    <th > 备注</th>
-                                    <th > 状态</th>
+                                    <th >RecordID</th>
+                                    <th >Type</th>
+                                    <th >Station</th>
+                                    <th >Spot_number</th>
+                                    <th >Train</th>
+                                    <th > Ad Type</th>
+                                    <th > Industry</th>
+                                    <th > Content</th>
+                                    <th > Company</th>
+                                    <th > DDL</th>
+                                    <th > Image</th>
+                                    <th > Remark</th>
+                                    <th > Status</th>
 
                                 </tr>
                                 </thead>
 
                                 <tbody id="dashboard-table-body">
-                                    <tr class="table-body"  th:each="ad:${ads}" th:classappend="${ad.getStatus() == '已过期' ? 'red-table-row table-body' : (ad.lessThanSeven() ? 'yellow-table-row table-body' : '')}">
+                                    <tr class="table-body"  th:each="ad:${ads}" th:classappend="${ad.getStatus() == 'Expired' ? 'red-table-row table-body' : (ad.lessThanSeven() ? 'yellow-table-row table-body' : '')}">
                                         <td th:id="'ad-form-id_' + ${ad.id}" th:text="${ad.id}"></td>
                                         <td th:id="'ad-form-type_' + ${ad.id}" th:text="${ad.spotType}"></td>
                                         <td th:id="'ad-form-station_' + ${ad.id}" th:text="${ad.station}"></td>
@@ -230,10 +230,10 @@
                             <div th:if="${totalPages>1}" class="page-block" id="page-block">
                                 <div class="page-bar" id="page-bar">
                                     <div>
-                                        <a  th:href="@{'/ads/page/' + ${1}}">首页</a>
+                                        <a  th:href="@{'/ads/page/' + ${1}}">First</a>
                                     </div>
                                     <div>
-                                        <a th:if="${currentPage > 1}" th:href="@{'/ads/page/' + ${currentPage - 1}}">上一页</a>
+                                        <a th:if="${currentPage > 1}" th:href="@{'/ads/page/' + ${currentPage - 1}}">Prev</a>
                                     </div>
                                     <div>
                                         <a th:if="${currentPage -3 > 0}" >...</a>
@@ -261,13 +261,13 @@
 
                                     </div>
                                     <div>
-                                        <a th:if="${currentPage < totalPages}" th:href="@{'/ads/page/' + ${currentPage + 1}}">下一页</a>
+                                        <a th:if="${currentPage < totalPages}" th:href="@{'/ads/page/' + ${currentPage + 1}}">Next</a>
                                     </div>
                                     <div>
-                                        <a  th:href="@{'/ads/page/' + ${totalPages}}">尾页</a>
+                                        <a  th:href="@{'/ads/page/' + ${totalPages}}">Last</a>
                                     </div>
                                 </div>
-                                <div class="page-total-count" ><div id="page-total-count">总记录数:[[${totalItems}]]</div></div>
+                                <div class="page-total-count" ><div id="page-total-count">Total:[[${totalItems}]]</div></div>
 
                             </div>
                         </div>
@@ -294,6 +294,5 @@
 <script src="/js/lib/preloader/pace.min.js"></script>
 <script src="/js/lib/bootstrap.min.js"></script>
 <script src="/js/scripts.js"></script>
-<script src="/js/scriptJG_dashbord.js"></script>
 </html>
 </html>

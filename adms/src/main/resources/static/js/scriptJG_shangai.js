@@ -13,12 +13,12 @@ function displayTable(response){
 
 
     for(let row in data){
-        let status = "未过期";
+        let status = "Non_expired";
         if(Date.parse(data[row].ddl) <= new Date(today)) {
-            status = "已过期";
+            status = "Expired";
         }
         if(data[row]["isdroped"]){
-            status = "已下刊";
+            status = "Dropped";
         }
 
 
@@ -37,8 +37,8 @@ function displayTable(response){
             "<td > " + status + "</td>" +
             "<td ><a href='/img/" + data[row].picture  + "'  target=\"_blank\" rel=\"noopener noreferrer\"><i class='ti-arrow-top-right'></i></a></td>" +
             "<td><div class=\"operation-btns\">" +
-                "<a class=\"update-btn btn\" id=\"update-btn_" + data[row].id+ "\" href=\"/ads-update?id=" + data[row].id+ "\">修改</a>" +
-                "<a class=\"drop-btn btn\" id=\"drop-btn_" + data[row].id+ "\" href=\"/ads-shangai/drop?id=" + data[row].id+ "\" onclick=\"confirmDrop(this.id)\">下刊</a>" +
+                "<a class=\"update-btn btn\" id=\"update-btn_" + data[row].id+ "\" href=\"/ads-update?id=" + data[row].id+ "\">Modify</a>" +
+                "<a class=\"drop-btn btn\" id=\"drop-btn_" + data[row].id+ "\" href=\"/ads-shangai/drop?id=" + data[row].id+ "\" onclick=\"confirmDrop(this.id)\">Drop</a>" +
             "</div></td>"+
 
 
@@ -47,15 +47,15 @@ function displayTable(response){
     body.innerHTML = inner;
     let has = response["currentPage"]*10> response["totalItems"] ? response["totalItems"] : response["currentPage"]*10;
     if(has === response["totalItems"]){
-        document.getElementById("page-block").innerHTML = "<div class='load-span'></div><div>记录数:"+  has + "/" + response["totalItems"] + "</div>";
+        document.getElementById("page-block").innerHTML = "<div class='load-span'></div><div>Total:"+  has + "/" + response["totalItems"] + "</div>";
     }else{
-        document.getElementById("page-block").innerHTML = "<div class='load-span'><button class='load-btn' onclick='getAllByQuery("+ (response["currentPage"] + 1) +")'>加载记录...</button></div><div>记录数:"+  has + "/" + response["totalItems"] + "</div>";
+        document.getElementById("page-block").innerHTML = "<div class='load-span'><button class='load-btn' onclick='getAllByQuery("+ (response["currentPage"] + 1) +")'>Loading...</button></div><div>Total:"+  has + "/" + response["totalItems"] + "</div>";
     }
 }
 
 
 function confirmDrop(id){
-    return confirm("是否下刊该记录");
+    return confirm("Drop this record?");
 }
 
 // load dropdowns

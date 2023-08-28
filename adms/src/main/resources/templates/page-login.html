@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>用户登录</title>
+    <title>Log In</title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -21,57 +21,56 @@
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
 
     <!-- Styles -->
-    <link href="/css/lib/font-awesome.min.css" rel="stylesheet">
-    <link href="/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/lib/helper.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
     <link href="/css/styleLogin.css" rel="stylesheet" />
 </head>
 
-<body class="bg-primary">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="login-content">
-                    <div class="login-logo">
+<body>
+    <div class="body">
+        <img src="/images/login-bg.jpg" alt="bg">
+    </div>
+    <div class="grad"></div>
+    <div class="main">
+        <div class="header">
+            <div>Subway Ad<br><span>Management System</span></div>
+        </div>
+        <br>
+        <div class="login">
+            <div>
+                <form th:action="@{/login}" method="post" class="login-form">
+
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+
+
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+
+
+
+                    <div class="error-chinese-block" th:if="${param.error}">
+                        <div class="login-error-text" th:switch="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
+                            <div  th:case="'User account is locked'">Account locked！</div>
+                            <div  th:case="'Bad credentials'">Invalid Password！</div>
+                            <div th:case="*">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</div>
+                        </div>
                     </div>
-                    <div class="login-form">
-                        <h4 class="login-form-heading">用户登录</h4>
-                        <form th:action="@{/login}" method="post">
-                            <div class="form-group">
-                                <label>用户名</label>
-                                <input type="text" class="form-control" name="username">
-                            </div>
-                            <div class="form-group">
-                                <label>密码</label>
-                                <input type="password" class="form-control" name="password">
-                            </div>
-<!--                            <div class="checkbox">-->
-<!--                                <label>-->
-<!--                                    <input type="checkbox"> 记住密码-->
-<!--                                </label>-->
-<!--                            </div>-->
 
+                    <button type="submit" class="submit-btn">Log in</button>
 
-<!--                            chinese version-->
-                            <div class="error-chinese-block" th:if="${param.error}">
-                                <div class="login-error-text" th:switch="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">
-                                    <div  th:case="'User account is locked'">您账号已被冻结！</div>
-                                    <div  th:case="'Bad credentials'">账号密码错误！</div>
-                                    <div th:case="*">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30 login-form-btn">登录</button>
-
-                        </form>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
+
     </div>
-</div>
+
+
+    <div class="remark">
+        <div>This is a demo ad system. Accounts can only be created using the Admin account.</div>
+        <div>You can log into the system with following sample accounts:</div>
+        <div><i>Username:admin  password:admin</i></div>
+        <div><i>Username:manager  password:manager</i></div>
+        <div><i>Username:staff  password:staff</i></div>
+        </div>
+    </div>
+
 
 </body>
 

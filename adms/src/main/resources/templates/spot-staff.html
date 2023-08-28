@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>点位状态查询</title>
+  <title>Spot status query</title>
 
   <!-- ================= Favicon ================== -->
   <!-- Standard -->
@@ -111,7 +111,6 @@
 
         <li>
           <a href="/reset-password" ><i class="ti-settings"></i> Change Password</a>
-          <!--              <a th:href="'/reset-password/' +${#authentication.principal.username}" ><i class="ti-settings"></i> 修改密码</a>-->
         </li>
 
         <li>
@@ -137,7 +136,7 @@
         <div class="float-right">
           <div class="dropdown dib">
             <div class="header-icon" data-toggle="dropdown">
-                  <span class="user-avatar" th:text="'您好: ' + ${#authentication.principal.name} + '! '"
+                  <span class="user-avatar" th:text="'Hi: ' + ${#authentication.principal.name} + '! '"
                   >John
 
                   </span><span><i class="ti-angle-down f-s-10"></i></span>
@@ -146,10 +145,11 @@
                       class="drop-down dropdown-profile dropdown-menu dropdown-menu-right"
               >
                 <div class="dropdown-content-heading">
-                  <div class="text-left text-user-info" th:text="'用户名：' + ${#authentication.principal.username}"></div>
-                  <div class="text-left text-user-info" th:text="'手机号：' + ${#authentication.principal.phoneNumber}"></div>
-                  <p class="text-left text-user-info text-user-role" th:text="'权限：' + ${#authentication.principal.topAuthority}"></p>
+                  <div class="text-left text-user-info" th:text="'Username：' + ${#authentication.principal.username}"></div>
+                  <div class="text-left text-user-info" th:text="'Phone：' + ${#authentication.principal.phoneNumber}"></div>
+                  <p class="text-left text-user-info text-user-role" th:text="'Authority：' + ${#authentication.principal.topAuthority}"></p>
                 </div>
+
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
           <div class="page-header">
             <div class="page-title">
-              <h1>点位查询<span></span></h1>
+              <h1>Spot status query<span></span></h1>
             </div>
           </div>
         </div>
@@ -175,8 +175,8 @@
           <div class="page-header">
             <div class="page-title">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item">点位管理</li>
-                <li class="breadcrumb-item active">点位状态查询</li>
+                <li class="breadcrumb-item">Spot Management</li>
+                <li class="breadcrumb-item active">Spot status query</li>
               </ol>
             </div>
           </div>
@@ -211,8 +211,8 @@
                             <th rowspan="1" colspan="1">
                               <select class="form-control search-bar-select"  id="search-bar-type">
                                 <option value=""></option>
-                                <option value="站内">站内</option>
-                                <option value="列车">列车</option>
+                                <option value="In_station">In_station</option>
+                                <option value="In_train">In_train</option>
                               </select>
                             </th>
                             <th rowspan="1" colspan="1">
@@ -233,27 +233,26 @@
                             <th rowspan="1" colspan="1">
                               <select class="form-control search-bar-select"  id="search-bar-status">
                                 <option value=""></option>
-                                <option value="未占用">未占用</option>
-                                <option value="已占用">已占用</option>
-                                <option value="其他">其他</option>
+                                <option value="Available">Available</option>
+                                <option value="Occupied">Occupied</option>
+                                <option value="Other">Other</option>
                               </select>
                             </th>
 
                             <th rowspan="1" colspan="1">
-                              <a class="clean-search-btn btn a-btn" href="/spots-view">清空搜索</a>
+                              <a class="clean-search-btn btn a-btn" href="/spots-view">Clean Search</a>
 
                             </th>
 
                           </tr>
                             <tr>
-                              <th >点位ID</th>
-                              <th >类型</th>
-                              <th >车站号</th>
-                              <th >点位编号</th>
-                              <th >列车号</th>
-                              <th > 状态</th>
-                              <th style="width:15%">备注</th>
-<!--                              <th style="width:10%">操作</th>-->
+                              <th >SpotID</th>
+                              <th >Type</th>
+                              <th >Station</th>
+                              <th >Spot_number</th>
+                              <th >Train</th>
+                              <th >Status</th>
+                              <th style="width:15%">Remark</th>
                             </tr>
                           </thead>
 
@@ -280,10 +279,10 @@
                         <div th:if="${totalPages>1}" class="page-block" id="page-block">
                           <div class="page-bar" id="page-bar">
                             <div>
-                              <a  th:href="@{'/spots-view/page/' + ${1}}">首页</a>
+                              <a  th:href="@{'/spots-view/page/' + ${1}}">First</a>
                             </div>
                             <div>
-                              <a th:if="${currentPage > 1}" th:href="@{'/spots-view/page/' + ${currentPage - 1}}">上一页</a>
+                              <a th:if="${currentPage > 1}" th:href="@{'/spots-view/page/' + ${currentPage - 1}}">Prev</a>
                             </div>
                             <div>
                               <a th:if="${currentPage -3 > 0}" >...</a>
@@ -311,13 +310,13 @@
 
                             </div>
                             <div>
-                              <a th:if="${currentPage < totalPages}" th:href="@{'/spots-view/page/' + ${currentPage + 1}}">下一页</a>
+                              <a th:if="${currentPage < totalPages}" th:href="@{'/spots-view/page/' + ${currentPage + 1}}">Next</a>
                             </div>
                             <div>
-                              <a  th:href="@{'/spots-view/page/' + ${totalPages}}">尾页</a>
+                              <a  th:href="@{'/spots-view/page/' + ${totalPages}}">Last</a>
                             </div>
                           </div>
-                          <div class="page-total-count" ><div id="page-total-count">总记录数:[[${totalItems}]]</div></div>
+                          <div class="page-total-count" ><div id="page-total-count">Total:[[${totalItems}]]</div></div>
 
                         </div>
 

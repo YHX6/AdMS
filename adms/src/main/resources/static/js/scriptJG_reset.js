@@ -4,7 +4,7 @@ document.getElementById("reset-form").addEventListener("submit", (e) => {
 
     document.querySelector(".warning-pass-old").innerHTML = "";
     if(!document.getElementById("password-old").value){
-        document.querySelector(".warning-pass-old").innerHTML = "  请输入原始密码！"
+        document.querySelector(".warning-pass-old").innerHTML = "  Enter original password！"
         invalid = true;
     }
 
@@ -12,10 +12,10 @@ document.getElementById("reset-form").addEventListener("submit", (e) => {
     let passNew = document.getElementById("password-new").value;
     document.querySelector(".warning-pass-new").innerHTML = "";
     if(!passNew){
-        document.querySelector(".warning-pass-new").innerHTML = "  请输入新密码！"
+        document.querySelector(".warning-pass-new").innerHTML = "  Enter new password！"
         invalid = true;
     }else if(passNew.length < 6 || passNew.length > 20){
-        document.querySelector(".warning-pass-new").innerHTML = "  密码长度应为6-20字符！"
+        document.querySelector(".warning-pass-new").innerHTML = "  Password should be 6-20 characters！"
         invalid = true;
     }
 
@@ -23,7 +23,7 @@ document.getElementById("reset-form").addEventListener("submit", (e) => {
     let passConfirm = document.getElementById("password-confirm").value;
     document.querySelector(".warning-pass-confirm").innerHTML = document.querySelector(".warning-pass-confirm").innerHTML = "";
     if(!passConfirm || passConfirm !== passNew){
-        document.querySelector(".warning-pass-confirm").innerHTML = "  密码不一致！"
+        document.querySelector(".warning-pass-confirm").innerHTML = "  Password not the same！"
         invalid = true;
     }
 

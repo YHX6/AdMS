@@ -35,7 +35,7 @@ function detectUsername(){
   $.get("/ajax/username-exist", {username:usernameInput.value},function (response){
     // console.log(response);
     if(response){
-      document.querySelector(".warning-username-add").innerHTML = "用户名已存在！";
+      document.querySelector(".warning-username-add").innerHTML = "Username existed！";
     }else{
       document.querySelector(".warning-username-add").innerHTML = "";
     }
@@ -56,12 +56,12 @@ function selectUserForm(theId) {
   const authority = document.getElementById(
       "authority_" + selectedId
   ).innerText;
-  if (authority === "员工") {
-    document.getElementById("user-update-authority").value = "员工";
-  } else if (authority === "管理员") {
-    document.getElementById("user-update-authority").value = "管理员";
+  if (authority === "Staff") {
+    document.getElementById("user-update-authority").value = "Staff";
+  } else if (authority === "Manager") {
+    document.getElementById("user-update-authority").value = "Manager";
   } else {
-    alert("您没有改权限！");
+    alert("Invalid Action！");
     return;
   }
 
@@ -93,8 +93,8 @@ function selectUserPass(theId){
   const authority = document.getElementById(
       "authority_" + selectedId
   ).innerText;
-  if (authority === "超级号") {
-    alert("您没有改权限！");
+  if (authority === "Admin") {
+    alert("Invalid Action！");
     return;
   }
   const id = document.getElementById("id_" + selectedId).innerText;
@@ -114,35 +114,35 @@ function selectUserPass(theId){
     const id = document.getElementById("user-add-id").value;
     document.querySelector(".warning-id-add").innerHTML = "";
     if (!id) {
-      document.querySelector(".warning-id-add").innerHTML = "员工ID为空！";
+      document.querySelector(".warning-id-add").innerHTML = "UserID is required！";
       invalid = true;
     } else if (id.length < 6 || id.length > 20) {
       document.querySelector(".warning-id-add").innerHTML =
-          "员工ID应为长度6-20英文字符！";
+          "UserID should be 6-20 characters！";
       invalid = true;
     }
 
     const name = document.getElementById("user-add-name").value;
     document.querySelector(".warning-name-add").innerHTML = "";
     if (!name) {
-      document.querySelector(".warning-name-add").innerHTML = "姓名为空！";
+      document.querySelector(".warning-name-add").innerHTML = "Name is required！";
       invalid = true;
     } else if (name.length > 20) {
-      document.querySelector(".warning-name-add").innerHTML = "姓名长度过长！";
+      document.querySelector(".warning-name-add").innerHTML = "Name should less than 20 character！";
       invalid = true;
     }
 
     const username = document.getElementById("user-add-username").value;
-    if(document.querySelector(".warning-username-add").innerHTML === "用户名已存在！"){
+    if(document.querySelector(".warning-username-add").innerHTML === "Username existed！"){
       invalid = true;
     }else{
       document.querySelector(".warning-username-add").innerHTML = "";
       if (!username) {
-        document.querySelector(".warning-username-add").innerHTML = "用户名为空！";
+        document.querySelector(".warning-username-add").innerHTML = "Username is required！";
         invalid = true;
       } else if (username.length < 6 || username.length > 20) {
         document.querySelector(".warning-username-add").innerHTML =
-            "用户名应为长度6-20英文字符！";
+            "Username should be 6-20 characters！";
         invalid = true;
       }
     }
@@ -154,11 +154,11 @@ function selectUserPass(theId){
     const password = document.getElementById("user-add-password").value;
     document.querySelector(".warning-password-add").innerHTML = "";
     if (!password) {
-      document.querySelector(".warning-password-add").innerHTML = "密码为空！";
+      document.querySelector(".warning-password-add").innerHTML = "Password is required！";
       invalid = true;
     } else if (password.length < 6 || password.length > 20) {
       document.querySelector(".warning-password-add").innerHTML =
-          "密码应为长度6-20英文字符！";
+          "Password should be 6-20 characters！";
       invalid = true;
     }
 
@@ -166,32 +166,17 @@ function selectUserPass(theId){
     document.querySelector(".warning-confirm-add").innerHTML = "";
     if (!confirm || confirm !== password) {
       document.querySelector(".warning-confirm-add").innerHTML =
-          "请确认数据密码一致！";
+          "Password not the same！";
       invalid = true;
     }
 
     const phone = document.getElementById("user-add-phone").value;
     document.querySelector(".warning-phone-add").innerHTML = "";
-    // console.log(phone);
-    // console.log(!phone);
-    // if(!phone && !containsOnlyNumbers(phone)){
-    //     document.querySelector(".warning-phone-add").innerHTML = "手机号为无效！";
-    //     invalid = true;
-    // }
-    // if (!phone) {
-    //   document.querySelector(".warning-phone-add").innerHTML = "手机号为空！";
-    //   invalid = true;
-    // } else if (phone.length !== 11 || !containsOnlyNumbers(phone)) {
-    //   document.querySelector(".warning-phone-add").innerHTML = "手机号为无效！";
-    //   invalid = true;
-    // }
-
-
 
     if (invalid) {
       e.preventDefault();
     }else{
-      alert("创建成功!");
+      alert("Created!");
     }
 
   });
@@ -208,43 +193,33 @@ function selectUserPass(theId){
     const name = document.getElementById("user-update-name").value;
     document.querySelector(".warning-name-info").innerHTML = "";
     if (!name) {
-      document.querySelector(".warning-name-info").innerHTML = "姓名为空！";
+      document.querySelector(".warning-name-info").innerHTML = "Name is required！";
       invalid = true;
     } else if (name.length > 20) {
-      document.querySelector(".warning-name-info").innerHTML = "姓名长度过长！";
+      document.querySelector(".warning-name-info").innerHTML = "Name should be less than 20 characters！";
       invalid = true;
     }
 
     const username = document.getElementById("user-update-username").value;
     document.querySelector(".warning-username-info").innerHTML = "";
     if (!username) {
-      document.querySelector(".warning-username-info").innerHTML = "用户名为空！";
+      document.querySelector(".warning-username-info").innerHTML = "Username is required！";
       invalid = true;
     } else if (username.length < 6 || username.length > 20) {
       document.querySelector(".warning-username-info").innerHTML =
-          "用户名应为长度6-20英文字符！";
+          "Username should be 6-20 characters！";
       invalid = true;
     }
 
 
     const phone = document.getElementById("user-update-phone").value;
     document.querySelector(".warning-phone-info").innerHTML = "";
-    // if(!phone && !containsOnlyNumbers(phone)){
-    //   document.querySelector(".warning-phone-add").innerHTML = "手机号为无效！";
-    //   invalid = true;
-    // }
-    // if (!phone) {
-    //   document.querySelector(".warning-phone-info").innerHTML = "手机号为空！";
-    //   invalid = true;
-    // } else if (phone.length !== 11 || !containsOnlyNumbers(phone)) {
-    //   document.querySelector(".warning-phone-info").innerHTML = "手机号为无效！";
-    //   invalid = true;
-    // }
+
 
     const auth = document.getElementById("user-update-authority").value;
     document.querySelector(".warning-auth-info").innerHTML = "";
     if(!auth){
-      document.querySelector(".warning-auth-info").innerHTML = "请选择权限！";
+      document.querySelector(".warning-auth-info").innerHTML = "Select authority！";
       invalid = true;
     }
 
@@ -252,7 +227,7 @@ function selectUserPass(theId){
     if (invalid) {
       e.preventDefault();
     }else{
-      alert("提交修改成功!");
+      alert("Modified!");
     }
 
   });
@@ -268,11 +243,11 @@ function selectUserPass(theId){
     const password = document.getElementById("user-pass-password").value;
     document.querySelector(".warning-password-pass").innerHTML = "";
     if (!password) {
-      document.querySelector(".warning-password-pass").innerHTML = "密码为空！";
+      document.querySelector(".warning-password-pass").innerHTML = "Password is required！";
       invalid = true;
     } else if (password.length < 6 || password.length > 20) {
       document.querySelector(".warning-password-pass").innerHTML =
-          "密码应为长度6-20英文字符！";
+          "Password should be 6-20 characters！";
       invalid = true;
     }
 
@@ -280,14 +255,14 @@ function selectUserPass(theId){
     document.querySelector(".warning-confirm-pass").innerHTML = "";
     if (!confirm || confirm !== password) {
       document.querySelector(".warning-confirm-pass").innerHTML =
-          "请确认数据密码一致！";
+          "Confirm password！";
       invalid = true;
     }
 
     if (invalid) {
       e.preventDefault();
     }else{
-      alert("提交修改成功!");
+      alert("Modified!");
     }
 
   });
@@ -306,11 +281,11 @@ function deleteUser(theId) {
   ).innerText;
 
 
-  if (authority === "超级号") {
-    alert("您没有改权限！");
+  if (authority === "Admin") {
+    alert("Invalid Action！");
     return false;
   } else {
-    let b = confirm("确定删除改用户账号？");
+    let b = confirm("Are you sure to deleted this account？");
     return b;
   }
 }

@@ -93,7 +93,7 @@ function cleanTrain(){
 
         if(document.getElementById("ad-form-type").value === ""){
             isValid = false;
-            alert("请选择站内/车站类型！");
+            alert("Please select type");
             e.preventDefault();
             return;
         }
@@ -101,42 +101,42 @@ function cleanTrain(){
         if(document.getElementById("ad-form-spotNumber").value === "" &&
             document.getElementById("ad-form-train").value === ""){
             isValid = false;
-            alert("请选择广告点位！");
+            alert("Please select spot_number！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-adtype").value){
             isValid = false;
-            alert("请输入广告分类！");
+            alert("Enter ad type！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-industrytype").value){
             isValid = false;
-            alert("请输入行业分类！");
+            alert("Enter industry！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-content").value){
             isValid = false;
-            alert("请输入广告内容！");
+            alert("Enter content！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-company").value){
             isValid = false;
-            alert("请输入结算单位！");
+            alert("Enter company！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-ddl").value){
             isValid = false;
-            alert("请选择到期时间！");
+            alert("Select ddl！");
             e.preventDefault();
             return;
         }

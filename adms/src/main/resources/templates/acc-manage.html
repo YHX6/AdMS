@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>账号权限管理</title>
+    <title>Account management</title>
 
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
@@ -103,7 +103,6 @@
 
             <li>
               <a href="/reset-password" ><i class="ti-settings"></i> Change Password</a>
-<!--              <a th:href="'/reset-password/' +${#authentication.principal.username}" ><i class="ti-settings"></i> 修改密码</a>-->
             </li>
 
             <li>
@@ -159,7 +158,7 @@
             <div class="col-lg-8 p-r-0 title-margin-right">
               <div class="page-header">
                 <div class="page-title">
-                  <h1>员工账号管理<span></span></h1>
+                  <h1>Account management<span></span></h1>
                 </div>
               </div>
             </div>
@@ -168,8 +167,8 @@
               <div class="page-header">
                 <div class="page-title">
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item">用户管理</li>
-                    <li class="breadcrumb-item active">账号权限管理</li>
+                    <li class="breadcrumb-item">User Management</li>
+                    <li class="breadcrumb-item active">Account management</li>
                   </ol>
                 </div>
               </div>
@@ -186,114 +185,114 @@
                       <div class="mail-box">
                         <!-- left side form -->
                         <aside class="sm-side">
-                          <div class="spot-add-title"><span class="btn-spot-add"><i class="fa fa-plus"></i>新增用户信息</span></div>
-                          <div class="spot-update-info"><span class="btn-spot-update"><i class="ti-pencil"></i>修改用户信息</span></div>
-                          <div class="spot-update-pass"><span class="btn-spot-update"><i class="ti-pencil"></i>修改账户密码</span></div>
+                          <div class="spot-add-title"><span class="btn-spot-add"><i class="fa fa-plus"></i>Create new User</span></div>
+                          <div class="spot-update-info"><span class="btn-spot-update"><i class="ti-pencil"></i>Modify User Infor</span></div>
+                          <div class="spot-update-pass"><span class="btn-spot-update"><i class="ti-pencil"></i>Modify Password</span></div>
                           <div class="spot-switch-info"><button class="user-switch-btn btn" onclick="switchForm()"><i class="ti-arrows-horizontal"></i></button></div>
                           <div class="spot-switch-pass"><button class="user-switch-btn btn" onclick="switchForm()"><i class="ti-arrows-horizontal"></i></button></div>
 
                           <form action="#" th:action="@{/users/add}" th:object="${user1}" method="post" class="user-add-form">
                               <div class="form-block">
-                                <label for="user-add-id" class="spot-add-label">员工ID<span class="warning warning-id-add"></span></label>
+                                <label for="user-add-id" class="spot-add-label">UserID<span class="warning warning-id-add"></span></label>
                                 <input name="user-add-id" id="user-add-id" type="text" class="spot-add-input" th:field="*{id}">
                               </div>
 
                               <div class="form-block">
-                                <label for="user-add-name" class="spot-add-label">姓名<span class="warning warning-name-add"></span></label>
+                                <label for="user-add-name" class="spot-add-label">Name<span class="warning warning-name-add"></span></label>
                                 <input name="user-add-name" id="user-add-name" type="text" class="spot-add-input" th:field="*{name}">
                               </div>
 
                               <div class="form-block">
-                                <label for="user-add-username" class="spot-add-label">用户名<span class="warning warning-username-add"></span></label>
+                                <label for="user-add-username" class="spot-add-label">Username<span class="warning warning-username-add"></span></label>
                                 <input name="user-add-username" id="user-add-username" type="text" class="spot-add-input" th:field="*{username}">
                               </div>
 
                               <div class="form-block">
-                                <label for="user-add-password" class="spot-add-label">密码<span class="warning warning-password-add"></span></label>
+                                <label for="user-add-password" class="spot-add-label">Password<span class="warning warning-password-add"></span></label>
                                 <input name="user-add-password" id="user-add-password" type="password" class="spot-add-input" th:field="*{password}">
                               </div>
 
                               <div class="form-block">
-                                <label for="user-add-confirm-password" class="spot-add-label">确认密码<span class="warning warning-confirm-add"></span></label>
+                                <label for="user-add-confirm-password" class="spot-add-label">Confirm Password<span class="warning warning-confirm-add"></span></label>
                                 <input name="user-add-confirm-password" id="user-add-confirm-password" type="password" class="spot-add-input" >
                               </div>
 
                               <div class="form-block">
-                                <label for="user-add-phone" class="spot-add-label">手机号<span class="warning warning-phone-add"></span></label>
+                                <label for="user-add-phone" class="spot-add-label">Phone<span class="warning warning-phone-add"></span></label>
                                 <input name="user-add-phone" id="user-add-phone" type="text" class="spot-add-input" th:field="*{phoneNumber}">
                               </div>
 
                               <div class="form-block">
-                                <label for="user-add-authority" class="spot-add-label">权限等级</label>
+                                <label for="user-add-authority" class="spot-add-label">Authority</label>
                                 <select name="user-add-authority" id="user-add-authority" class="classic spot-add-select"  th:field="*{topRole}">
-                                  <option value="员工">员工</option>
-                                  <option value="管理员">管理员</option>
-                                  <!-- <option value="admin">超级账号</option> -->
+                                  <option value="Staff">Staff</option>
+                                  <option value="Manager">Staff</option>
+                                  <!-- <option value="admin">Admin</option> -->
                                 </select>
                               </div>
 
-                              <button type="submit" class="btn btn-success spot-add-btn">提交</button>
+                              <button type="submit" class="btn btn-success spot-add-btn">Submit</button>
                             </form>
 
                           <form action="#" th:action="@{/users/update-info}" th:object="${user2}" method="post" class="user-update-info">
                               <div class="form-block">
-                                <label for="user-update-id" class="spot-add-label">员工ID（不可更改）<span class="warning warning-id-info"></span></label>
+                                <label for="user-update-id" class="spot-add-label">UserID(unchangeable)<span class="warning warning-id-info"></span></label>
                                 <input name="user-update-id" id="user-update-id" type="text" class="spot-add-input" th:field="*{id}" readonly>
                               </div>
 
 
                               <div class="form-block">
-                                <label for="user-update-username" class="spot-add-label">用户名（不可更改）<span class="warning warning-username-info"></span></label>
+                                <label for="user-update-username" class="spot-add-label">Username（unchangeable）<span class="warning warning-username-info"></span></label>
                                 <input name="user-update-username" id="user-update-username" type="text" class="spot-add-input" th:field="*{username}" readonly>
                               </div>
 
                             <div class="form-block">
-                              <label for="user-update-name" class="spot-add-label">姓名<span class="warning warning-name-info"></span></label>
+                              <label for="user-update-name" class="spot-add-label">Name<span class="warning warning-name-info"></span></label>
                               <input name="user-update-name" id="user-update-name" type="text" class="spot-add-input" th:field="*{name}">
                             </div>
 
                               <div class="form-block">
-                                <label for="user-update-phone" class="spot-add-label">手机号<span class="warning warning-phone-info"></span></label>
+                                <label for="user-update-phone" class="spot-add-label">Phone<span class="warning warning-phone-info"></span></label>
                                 <input name="user-update-phone" id="user-update-phone" type="text" class="spot-add-input" th:field="*{phoneNumber}">
                               </div>
 
                             <div class="form-block">
-                              <label for="user-update-locked" class="spot-add-label">是否被冻结<span class="warning warning-phone-info"></span></label>
+                              <label for="user-update-locked" class="spot-add-label">Is Locked<span class="warning warning-phone-info"></span></label>
                               <select name="user-update-locked" id="user-update-locked" class="classic spot-add-select"  th:field="*{accountNonLocked}">
-                                <option value="true">否</option>
-                                <option value="false">是</option>
+                                <option value="true">No</option>
+                                <option value="false">Yes</option>
                               </select>
                             </div>
 
                               <div class="form-block">
-                                <label for="user-update-authority" class="spot-add-label">权限等级<span class="warning warning-auth-info"></span></label>
+                                <label for="user-update-authority" class="spot-add-label">Authority<span class="warning warning-auth-info"></span></label>
                                 <select name="user-update-authority" id="user-update-authority" class="classic spot-add-select"  th:field="*{topRole}">
-                                  <option value="员工">员工</option>
-                                  <option value="管理员">管理员</option>
-                                  <!-- <option value="admin">超级账号</option> -->
+                                  <option value="Staff">Staff</option>
+                                  <option value="Manager">Manager</option>
+                                  <!-- <option value="admin">Admin</option> -->
                                 </select>
                               </div>
 
-                              <button type="submit" class="btn btn-success spot-add-btn">提交</button>
+                              <button type="submit" class="btn btn-success spot-add-btn">Submit交</button>
                             </form>
 
                           <form action="#" th:action="@{/users/update-password}" th:object="${user3}" method="post" class="user-update-pass">
                             <div class="form-block">
-                              <label for="user-pass-id" class="spot-add-label">员工ID<span class="warning warning-id-pass"></span></label>
+                              <label for="user-pass-id" class="spot-add-label">UserID<span class="warning warning-id-pass"></span></label>
                               <input name="user-pass-id" id="user-pass-id" type="text" class="spot-add-input" th:field="*{id}" readonly>
                             </div>
 
                             <div class="form-block">
-                              <label for="user-pass-password" class="spot-add-label">密码<span class="warning warning-password-pass"></span></label>
+                              <label for="user-pass-password" class="spot-add-label">Password<span class="warning warning-password-pass"></span></label>
                               <input name="user-pass-password" id="user-pass-password" type="password" class="spot-add-input" th:field="*{password}">
                             </div>
 
                             <div class="form-block">
-                              <label for="user-pass-confirm-password" class="spot-add-label">确认密码<span class="warning warning-confirm-pass"></span></label>
+                              <label for="user-pass-confirm-password" class="spot-add-label">Confirm Password<span class="warning warning-confirm-pass"></span></label>
                               <input name="user-pass-confirm-password" id="user-pass-confirm-password" type="password" class="spot-add-input" >
                             </div>
 
-                            <button type="submit" class="btn btn-success spot-add-btn">提交</button>
+                            <button type="submit" class="btn btn-success spot-add-btn">Submit</button>
                           </form>
 
 
@@ -306,14 +305,14 @@
                             <table id="row-select" class="display table table-borderd table-hover ad-sc-table" style="width:100%" > 
                               <thead>
                                 <tr>
-                                  <th style="width:15%">员工ID</th>
-                                  <th style="width:10%">姓名</th>
-                                  <th style="width:15%">用户名</th>
-                                  <th style="width:15%">手机号</th>
-                                  <th style="width:10%">权限等级</th>
-                                  <th style="width:15%">是否被冻结</th>
-                                  <th style="width:15%">冻结时间</th>
-                                  <th style="width:5%">操作</th>
+                                  <th style="width:15%">UserID</th>
+                                  <th style="width:10%">Name</th>
+                                  <th style="width:15%">Username</th>
+                                  <th style="width:15%">Phone</th>
+                                  <th style="width:10%">Authority</th>
+                                  <th style="width:15%">Is Locked</th>
+                                  <th style="width:15%">Locked Time</th>
+                                  <th style="width:5%">Operation</th>
                                 </tr>
                               </thead>
 
@@ -324,7 +323,7 @@
                                     <td th:id="'username_' + ${user.id}" th:text="${user.getUsername()}"></td>
                                     <td th:id="'phone_' + ${user.id}" th:text="${user.getPhoneNumber()}"></td>
                                     <td th:id="'authority_' + ${user.id}" th:text="${user.topRole}"></td>
-                                    <td th:id="'accountNonLocked_' + ${user.id}" th:text="${user.accountNonLocked ? '否':'是'}"></td>
+                                    <td th:id="'accountNonLocked_' + ${user.id}" th:text="${user.accountNonLocked ? 'No':'Yes'}"></td>
                                   <td th:id="'lockedTime_' + ${user.id}" th:text="${user.lockTime}"></td>
                                     <td>
                                       <div class="operation-btns">

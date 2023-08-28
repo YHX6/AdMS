@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-cn" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>广告修改删除</title>
+  <title>Ad modification and deletion</title>
 
   <!-- ================= Favicon ================== -->
   <!-- Standard -->
@@ -103,7 +103,6 @@
 
         <li>
           <a href="/reset-password" ><i class="ti-settings"></i> Change Password</a>
-          <!--              <a th:href="'/reset-password/' +${#authentication.principal.username}" ><i class="ti-settings"></i> 修改密码</a>-->
         </li>
 
         <li>
@@ -129,7 +128,7 @@
         <div class="float-right">
           <div class="dropdown dib">
             <div class="header-icon" data-toggle="dropdown">
-                  <span class="user-avatar" th:text="'您好: ' + ${#authentication.principal.name} + '! '"
+                  <span class="user-avatar" th:text="'Hi: ' + ${#authentication.principal.name} + '! '"
                   >John
 
                   </span><span><i class="ti-angle-down f-s-10"></i></span>
@@ -138,10 +137,11 @@
                       class="drop-down dropdown-profile dropdown-menu dropdown-menu-right"
               >
                 <div class="dropdown-content-heading">
-                  <div class="text-left text-user-info" th:text="'用户名：' + ${#authentication.principal.username}"></div>
-                  <div class="text-left text-user-info" th:text="'手机号：' + ${#authentication.principal.phoneNumber}"></div>
-                  <p class="text-left text-user-info text-user-role" th:text="'权限：' + ${#authentication.principal.topAuthority}"></p>
+                  <div class="text-left text-user-info" th:text="'Username：' + ${#authentication.principal.username}"></div>
+                  <div class="text-left text-user-info" th:text="'Phone：' + ${#authentication.principal.phoneNumber}"></div>
+                  <p class="text-left text-user-info text-user-role" th:text="'Authority：' + ${#authentication.principal.topAuthority}"></p>
                 </div>
+
               </div>
             </div>
           </div>
@@ -158,7 +158,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
           <div class="page-header">
             <div class="page-title">
-              <h1>广告记录管理<span></span></h1>
+              <h1>Ad modification and deletion<span></span></h1>
             </div>
           </div>
         </div>
@@ -167,8 +167,8 @@
           <div class="page-header">
             <div class="page-title">
               <ol class="breadcrumb">
-                <li class="breadcrumb-item">广告管理</li>
-                <li class="breadcrumb-item active">广告修改删除</li>
+                <li class="breadcrumb-item">Spot Management</li>
+                <li class="breadcrumb-item active">Ad modification and deletion</li>
               </ol>
             </div>
           </div>
@@ -191,8 +191,8 @@
                   <th rowspan="1" colspan="1">
                     <select class="form-control search-bar-select"  id="search-bar-type">
                       <option value=""></option>
-                      <option value="站内">站内</option>
-                      <option value="列车">列车</option>
+                      <option value="In_station">In_station</option>
+                      <option value="In_train">In_train</option>
                     </select>
                   </th>
                   <th rowspan="1" colspan="1">
@@ -233,33 +233,33 @@
                   <th rowspan="1" colspan="1">
                     <select class="form-control search-bar-select"  id="search-bar-status">
                       <option value=""></option>
-                      <option value="已过期">已过期</option>
-                      <option value="未过期">未过期</option>
-                      <option value="已下刊">已下刊</option>
+                      <option value="Expired">Expired</option>
+                      <option value="Non_expired">Non_expired</option>
+                      <option value="Dropped">Dropped</option>
                     </select>
                   </th>
                   <th></th>
                   <th rowspan="1" colspan="1">
-                    <a class="clean-search-btn btn a-btn" href="/ads-shangai">清空搜索</a>
+                    <a class="clean-search-btn btn a-btn" href="/ads-shangai">Clean Search</a>
 
                   </th>
 
                 </tr>
                 <tr>
-                  <th style="width:5%">记录ID</th>
-                  <th style="width:5%">车站/列车</th>
-                  <th style="width:7%">站点</th>
-                  <th style="width:7%">序号</th>
-                  <th style="width:7%">列车号</th>
-                  <th style="width:10%"> 广告形式</th>
-                  <th style="width:10%"> 行业分类</th>
-                  <th style="width:10%"> 内容</th>
-                  <th style="width:10%"> 结算单位</th>
-                  <th style="width:10%"> 到期时间</th>
-                  <th style="width:7%"> 状态</th>
-                  <th style="width:4%"> 图片</th>
+                  <th style="width:5%">RecordID</th>
+                  <th style="width:5%">Type</th>
+                  <th style="width:7%">Station</th>
+                  <th style="width:7%">Spot_number</th>
+                  <th style="width:7%">Train</th>
+                  <th style="width:10%"> Ad Type</th>
+                  <th style="width:10%"> Industry</th>
+                  <th style="width:10%"> Content</th>
+                  <th style="width:10%"> Company</th>
+                  <th style="width:10%"> DDL</th>
+                  <th style="width:7%"> Status</th>
+                  <th style="width:4%"> Image</th>
 
-                  <th style="width:8%"> 操作</th>
+                  <th style="width:8%">Operation</th>
 
 
                 </tr>
@@ -283,8 +283,8 @@
 
                     <td>
                       <div class="operation-btns">
-                            <a class="update-btn btn" th:id="'update-btn_' + ${ad.id}" th:href="@{/ads-update(id=${ad.id})}">修改</a>
-                            <a class="drop-btn btn" th:id="'drop-btn_' + ${ad.id}" th:href="@{/ads-shangai/drop(id=${ad.id})}" onclick="confirmDrop(this.id)">下刊</a>
+                            <a class="update-btn btn" th:id="'update-btn_' + ${ad.id}" th:href="@{/ads-update(id=${ad.id})}">Modify</a>
+                            <a class="drop-btn btn" th:id="'drop-btn_' + ${ad.id}" th:href="@{/ads-shangai/drop(id=${ad.id})}" onclick="confirmDrop(this.id)">Drop</a>
 
                       </div>
                     </td>
@@ -298,10 +298,10 @@
               <div th:if="${totalPages>1}" class="page-block" id="page-block">
                 <div class="page-bar" id="page-bar">
                   <div>
-                    <a  th:href="@{'/ads-shangai/page/' + ${1}}">首页</a>
+                    <a  th:href="@{'/ads-shangai/page/' + ${1}}">First</a>
                   </div>
                   <div>
-                    <a th:if="${currentPage > 1}" th:href="@{'/ads-shangai/page/' + ${currentPage - 1}}">上一页</a>
+                    <a th:if="${currentPage > 1}" th:href="@{'/ads-shangai/page/' + ${currentPage - 1}}">Prev</a>
                   </div>
                   <div>
                     <a th:if="${currentPage -3 > 0}" >...</a>
@@ -329,13 +329,13 @@
 
                   </div>
                   <div>
-                    <a th:if="${currentPage < totalPages}" th:href="@{'/ads-shangai/page/' + ${currentPage + 1}}">下一页</a>
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/ads-shangai/page/' + ${currentPage + 1}}">Next</a>
                   </div>
                   <div>
-                    <a  th:href="@{'/ads-shangai/page/' + ${totalPages}}">尾页</a>
+                    <a  th:href="@{'/ads-shangai/page/' + ${totalPages}}">Last</a>
                   </div>
                 </div>
-                <div class="page-total-count" ><div id="page-total-count">总记录数:[[${totalItems}]]</div></div>
+                <div class="page-total-count" ><div id="page-total-count">Total:[[${totalItems}]]</div></div>
 
               </div>
 

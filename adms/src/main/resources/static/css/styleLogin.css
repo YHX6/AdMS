@@ -1,72 +1,228 @@
-.bg-primary{
+/*.bg-primary{*/
 
-    width: 100%;
-    min-height: 100vh;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
+/*    width: 100%;*/
+/*    min-height: 100vh;*/
+/*    display: -webkit-box;*/
+/*    display: -webkit-flex;*/
+/*    display: -moz-box;*/
+/*    display: -ms-flexbox;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding: 15px;*/
+/*    background: #2575fc;*/
+/*    background: -webkit-linear-gradient(left,#6a11cb,#2575fc);*/
+/*    background: -o-linear-gradient(left,#6a11cb,#2575fc);*/
+/*    background: -moz-linear-gradient(left,#6a11cb,#2575fc);*/
+/*    background: linear-gradient(left,#6a11cb,#2575fc);*/
+/*}*/
+
+/*.login-form{*/
+/*    border-radius: 10px;*/
+/*    box-shadow: 0 0 20px rgba(0,0,0,0.5);*/
+/*}*/
+
+/*.login-form-btn{*/
+
+/*    font-family: Ubuntu-Bold;*/
+/*    font-size: 18px;*/
+/*    color: #fff;*/
+/*    line-height: 1.2;*/
+/*    text-transform: uppercase;*/
+/*    display: -webkit-box;*/
+/*    display: -webkit-flex;*/
+/*    display: -moz-box;*/
+/*    display: -ms-flexbox;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding: 0 20px;*/
+/*    min-width: 160px;*/
+/*    height: 42px;*/
+/*    border-radius: 21px;*/
+/*    background: #d41872;*/
+/*    background: -webkit-linear-gradient(left,#a445b2,#d41872,#fa4299);*/
+/*    background: -o-linear-gradient(left,#a445b2,#d41872,#fa4299);*/
+/*    background: -moz-linear-gradient(left,#a445b2,#d41872,#fa4299);*/
+/*    background: linear-gradient(left,#a445b2,#d41872,#fa4299);*/
+/*    position: relative;*/
+/*    z-index: 1;*/
+/*    -webkit-transition: all .4s;*/
+/*    -o-transition: all .4s;*/
+/*    -moz-transition: all .4s;*/
+/*    transition: all .4s;*/
+/*}*/
+
+/*.login-form-btn:hover{*/
+/*    background-color: #555;*/
+/*}*/
+
+
+/*.login-form-heading{*/
+/*    font-size: 30px;*/
+/*    font-weight: 800;*/
+/*}*/
+
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #fff;
+
+    /*color: #fff;*/
+    font-family: Arial;
+    font-size: 12px;
+    height: 100vh;
+    width: 100vw;
+}
+
+.body img{
+    position: fixed;
+    z-index: -999;
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.grad{
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+    z-index: -990;
+    opacity: 0.7;
+}
+
+.main{
+    position: absolute;
+    z-index: 1;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    background: #2575fc;
-    background: -webkit-linear-gradient(left,#6a11cb,#2575fc);
-    background: -o-linear-gradient(left,#6a11cb,#2575fc);
-    background: -moz-linear-gradient(left,#6a11cb,#2575fc);
-    background: linear-gradient(left,#6a11cb,#2575fc);
+    flex-direction: row;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+.header{
+    background-color: inherit;
+    width: 350px;
+}
+
+.header div{
+    float: left;
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 35px;
+    font-weight: 300;
+    background-color: inherit;
+}
+
+.header div span{
+    display: block;
+    font-weight: 300;
+    color: #5379fa !important;
+    background-color: inherit;
+    width: 350px;
 }
 
 .login-form{
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    width: 350px;
 }
 
-.login-form-btn{
+.login-form{
+    height: 150px;
+    width: 350px;
+    padding: 10px;
+}
 
-    font-family: Ubuntu-Bold;
-    font-size: 18px;
+.login-form input[type=text]{
+    width: 250px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 2px;
     color: #fff;
-    line-height: 1.2;
-    text-transform: uppercase;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-    min-width: 160px;
-    height: 42px;
-    border-radius: 21px;
-    background: #d41872;
-    background: -webkit-linear-gradient(left,#a445b2,#d41872,#fa4299);
-    background: -o-linear-gradient(left,#a445b2,#d41872,#fa4299);
-    background: -moz-linear-gradient(left,#a445b2,#d41872,#fa4299);
-    background: linear-gradient(left,#a445b2,#d41872,#fa4299);
-    position: relative;
-    z-index: 1;
-    -webkit-transition: all .4s;
-    -o-transition: all .4s;
-    -moz-transition: all .4s;
-    transition: all .4s;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 4px;
 }
 
-.login-form-btn:hover{
-    background-color: #555;
+.login-form input[type=password]{
+    width: 250px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 2px;
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 4px;
+    margin-top: 10px;
 }
 
+.submit-btn{
+    width: 260px;
+    height: 35px;
+    background: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #a18d6c;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px;
+    margin-top: 10px;
+}
 
+.submit-btn:hover{
+    opacity: 0.8;
+}
+
+.submit-btn:active{
+    opacity: 0.6;
+}
+
+.login-form input[type=text]:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+.login-form input[type=password]:focus{
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.9);
+}
+
+.submit-btn:focus{
+    outline: none;
+}
+
+::-webkit-input-placeholder{
+    color: rgba(255,255,255,0.6);
+}
 
 .login-error-text{
     margin-top: 10px;
     color: red;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px;
+    margin-top: 10px;
 }
 
-.login-form-heading{
-    font-size: 30px;
-    font-weight: 800;
+.remark{
+    position: absolute;
+    bottom: 5%;
+    left:5%;
+    color: #b3b3b3;
+    font-size: 16px;
 }
-
+.remark div{
+    padding: 10px;
+}

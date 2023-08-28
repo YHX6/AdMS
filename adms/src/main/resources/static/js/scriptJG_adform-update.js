@@ -48,13 +48,13 @@ typeChooser.addEventListener("change",function (){
         $("#ajax-train-block").hide();
         cleanStationSpot();
         cleanTrain();
-    }else if(typeChooser.value === "站内"){
+    }else if(typeChooser.value === "In_station"){
         $("#ajax-station-block").show();
         $("#ajax-spotnumber-block").show();
         $("#ajax-train-block").hide();
         cleanStationSpot();
         cleanTrain();
-    }else if(typeChooser.value === "列车"){
+    }else if(typeChooser.value === "In_train"){
         $("#ajax-station-block").hide();
         $("#ajax-spotnumber-block").hide();
         $("#ajax-train-block").show();
@@ -142,7 +142,7 @@ function isNotChoosen(data){
 
         if(document.getElementById("ad-form-type").value === ""){
             isValid = false;
-            alert("请选择站内/车站类型！");
+            alert("Select type！");
             e.preventDefault();
             return;
         }
@@ -151,7 +151,7 @@ function isNotChoosen(data){
         if( isNotChoosen(document.getElementById("ad-form-spotNumber").value) &&
              isNotChoosen(document.getElementById("ad-form-train").value)){
             isValid = false;
-            alert("请选择广告点位！");
+            alert("Select spot_number！");
             e.preventDefault();
             return;
         }
@@ -159,35 +159,35 @@ function isNotChoosen(data){
 
         if(!document.getElementById("ad-form-adtype").value){
             isValid = false;
-            alert("请输入广告分类！");
+            alert("Enter ad type！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-industrytype").value){
             isValid = false;
-            alert("请输入行业分类！");
+            alert("Enter industry！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-content").value){
             isValid = false;
-            alert("请输入广告内容！");
+            alert("Enter content！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-company").value){
             isValid = false;
-            alert("请输入结算单位！");
+            alert("Enter company！");
             e.preventDefault();
             return;
         }
 
         if(!document.getElementById("ad-form-ddl").value){
             isValid = false;
-            alert("请选择到期时间！");
+            alert("Select ddl！");
             e.preventDefault();
             return;
         }
@@ -196,7 +196,7 @@ function isNotChoosen(data){
         if(document.getElementById("ad-form-check").checked &&
         !document.getElementById("ad-form-picture").value ){
             isValid = false;
-            alert("请上传文件！");
+            alert("Upload your file！");
             e.preventDefault();
             return;
         }
@@ -204,7 +204,7 @@ function isNotChoosen(data){
 
         if(!document.getElementById("ad-form-isdroped").value){
             isValid = false;
-            alert("请选择是否已下刊！");
+            alert("Select is dropped！");
             e.preventDefault();
             return;
         }
