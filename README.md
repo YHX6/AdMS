@@ -2,7 +2,8 @@
 
 Welcome to the README file of **Subway Ad Management System!** 
 
-This is the demo of this system: 
+This is the demo of this system:
+In this demo version, the change password function is disabled(annotated)
 
 
 
