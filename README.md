@@ -7,31 +7,19 @@ In this demo version, the change password function is disabled(annotated)
 
 
 
-## Usage and Licensing
+## Getting Started
 
-### Ownership
+following are sample data
 
-This project is the intellectual property of **Yaohong Xiang**. All rights to the code, design, and associated content are owned by Yaohong Xiang.  
+<t$z0<Zw(
 
-### Commercial Use
-
-**This project is not open for commercial use.** It is provided for educational and non-commercial purposes only. You are not allowed to use this project, or any part of it, for any commercial endeavor or purpose without explicit permission from Yaohong Xiang.
-
-### Open Source Components 
-
-This project may use open-source components and libraries, which are subject to their own respective licenses. Please review and comply with the terms of those licenses if you intend to use or modify those components.
-
- ### Contributions 
-
-Contributions to this project are welcome. By contributing, you agree to license your contributions under the same terms outlined here. [Include link to CONTRIBUTING.md if applicable] 
-
-### Contact 
-
-For inquiries regarding the use of this project or any questions, please contact xiangyaohong6@gmail.com. 
-
-### Disclaimer 
-
-This README is provided for informational purposes only and does not constitute legal advice. For any legal concerns or clarifications about usage and licensing, please consult with a legal professional.
+```shell
+mysql -u root -p
+source path/init_connection.sql
+source path/inint_tables.sql
+source path/init_ad.sql
+source path/init_spot.sql
+```
 
 
 
@@ -83,3 +71,30 @@ I divide spot into two main categories: In_station&In_train. The ads types can b
 
 *The login page image is from "https://unsplash.com/photos/El5zuQAtfeo" shared Balazs Busznyak*.
 
+
+
+## Usage and Licensing
+
+### Ownership
+
+This project is the intellectual property of **Yaohong Xiang**. All rights to the code, design, and associated content are owned by Yaohong Xiang.  
+
+### Commercial Use
+
+**This project is not open for commercial use.** It is provided for educational and non-commercial purposes only. You are not allowed to use this project, or any part of it, for any commercial endeavor or purpose without explicit permission from Yaohong Xiang.
+
+### Open Source Components 
+
+This project may use open-source components and libraries, which are subject to their own respective licenses. Please review and comply with the terms of those licenses if you intend to use or modify those components.
+
+ ### Contributions 
+
+Contributions to this project are welcome. By contributing, you agree to license your contributions under the same terms outlined here. [Include link to CONTRIBUTING.md if applicable] 
+
+### Contact 
+
+For inquiries regarding the use of this project or any questions, please contact xiangyaohong6@gmail.com. 
+
+### Disclaimer 
+
+This README is provided for informational purposes only and does not constitute legal advice. For any legal concerns or clarifications about usage and licensing, please consult with a legal professional.
