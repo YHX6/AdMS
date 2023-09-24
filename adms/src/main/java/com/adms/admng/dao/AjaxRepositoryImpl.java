@@ -16,7 +16,7 @@ public class AjaxRepositoryImpl implements AjaxRepository {
     @Override
     public List<String> findAllStations() {
         Query query = entityManager.createNativeQuery(
-                "select distinct station from spot where type='站内'"
+                "select distinct station from spot where type='In_station'"
                 , String.class);
 
         return query.getResultList();
@@ -27,6 +27,8 @@ public class AjaxRepositoryImpl implements AjaxRepository {
         Query query = entityManager.createNativeQuery(
                 "select distinct station from spot "
                 , String.class);
+
+        System.out.println(query.getResultList());
 
         return query.getResultList();
     }
@@ -54,7 +56,7 @@ public class AjaxRepositoryImpl implements AjaxRepository {
     @Override
     public List<String> findAllTrains() {
         Query query = entityManager.createNativeQuery(
-                "select distinct train from spot where type='列车'"
+                "select distinct train from spot where type='In_train'"
                 , String.class);
         return query.getResultList();
     }
