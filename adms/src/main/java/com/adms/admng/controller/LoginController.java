@@ -62,35 +62,34 @@ public class LoginController {
 
     @RequestMapping("/reset-password/submit")
     public String resetPasswordSubmit(@ModelAttribute("rp") ResetPassword rp, Model theModel, HttpServletRequest req){
-//        Optional<User> user = userService.findUserByUsername(rp.getUsername());
-//
-//
-//        if(user.isEmpty()){
-//            theModel.addAttribute("errorPassword", "");
-//            theModel.addAttribute("errorUsername", "User not existed!");
-//            return "page-reset-password";
-//        }else if(!passwordEncoder.matches(rp.getPasswordOld(), user.get().getPassword())){
-//            theModel.addAttribute("errorUsername", "");
-//            theModel.addAttribute("errorPassword", "Incorrect Password!");
-//            return "page-reset-password";
-//        }else{
-//            user.get().setPassword(passwordEncoder.encode(rp.getPasswordNew()));
-//            userService.save(user.get());
-//
-//
-//            UserInfoUserDetails userDetails = (UserInfoUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//            recordService.save(
-//                    new Record(
-//                            userDetails.getUser().getId(),
-//                            userDetails.getUsername(),
-//                            req.getRemoteAddr(),
-//                            req.getRequestURI(),
-//                            "User password chanaged, username： " + rp.getUsername(),
-//                            new Date()));
-//
-//            return "redirect:/logout";
-//        }
-        return "redirect:/logout";
+       Optional<User> user = userService.findUserByUsername(rp.getUsername());
+
+
+       if(user.isEmpty()){
+           theModel.addAttribute("errorPassword", "");
+           theModel.addAttribute("errorUsername", "User not existed!");
+           return "page-reset-password";
+       }else if(!passwordEncoder.matches(rp.getPasswordOld(), user.get().getPassword())){
+           theModel.addAttribute("errorUsername", "");
+           theModel.addAttribute("errorPassword", "Incorrect Password!");
+           return "page-reset-password";
+       }else{
+           user.get().setPassword(passwordEncoder.encode(rp.getPasswordNew()));
+           userService.save(user.get());
+
+
+           UserInfoUserDetails userDetails = (UserInfoUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+           recordService.save(
+                   new Record(
+                           userDetails.getUser().getId(),
+                           userDetails.getUsername(),
+                           req.getRemoteAddr(),
+                           req.getRequestURI(),
+                           "User password chanaged, username： " + rp.getUsername(),
+                           new Date()));
+
+           return "redirect:/logout";
+       }
     }
 
 
