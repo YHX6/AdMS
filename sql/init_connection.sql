@@ -1,7 +1,4 @@
-Drop user if exists 'adms'@'localhost';
-
-
- CREATE USER 'adms'@'localhost' IDENTIFIED BY 'adms';
+ CREATE USER '<t$z0<Zw('@'localhost' IDENTIFIED BY '<t$z0<Zw(';
  
- GRANT ALL PRIVILEGES ON * . * TO 'adms'@'localhost';
+ GRANT ALL PRIVILEGES ON * . * TO '<t$z0<Zw('@'localhost';
  

@@ -149,7 +149,7 @@ public class AdRepositoryImpl implements AdRepositoryCustom {
     @Transactional
     public int saveAd(Ad ad) {
         int spotId = -1;
-        if(ad.getSpotType().equals("站内")){
+        if(ad.getSpotType().equals("In_station")){
             spotId = (Integer) entityManager.createNativeQuery(
                             "select id from spot where `type`=? and station=? and spot_number=?",
                             Integer.class
@@ -158,7 +158,7 @@ public class AdRepositoryImpl implements AdRepositoryCustom {
                     .setParameter(2, ad.getStation())
                     .setParameter(3, ad.getSpotNumber())
                     .getResultList().get(0);
-        }else if(ad.getSpotType().equals("列车")){
+        }else if(ad.getSpotType().equals("In_train")){
             spotId = (Integer)  entityManager.createNativeQuery(
                             "select id from spot where `type`=? and train=?",
                             Integer.class
@@ -192,7 +192,7 @@ public class AdRepositoryImpl implements AdRepositoryCustom {
     @Transactional
     public int updateAd(Ad ad) {
         int spotId = -1;
-        if(ad.getSpotType().equals("站内")){
+        if(ad.getSpotType().equals("In_station")){
             spotId = (Integer) entityManager.createNativeQuery(
                             "select id from spot where `type`=? and station=? and spot_number=?",
                             Integer.class
@@ -201,7 +201,7 @@ public class AdRepositoryImpl implements AdRepositoryCustom {
                     .setParameter(2, ad.getStation())
                     .setParameter(3, ad.getSpotNumber())
                     .getResultList().get(0);
-        }else if(ad.getSpotType().equals("列车")){
+        }else if(ad.getSpotType().equals("In_train")){
             spotId = (Integer)  entityManager.createNativeQuery(
                             "select id from spot where `type`=? and train=?",
                             Integer.class

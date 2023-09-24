@@ -16,13 +16,13 @@ typeChooser.addEventListener("change",function (){
         $("#ajax-train-block").hide();
         cleanStationSpot();
         cleanTrain();
-    }else if(typeChooser.value === "站内"){
+    }else if(typeChooser.value === "In_station"){
         $("#ajax-station-block").show();
         $("#ajax-spotnumber-block").show();
         $("#ajax-train-block").hide();
         displayStation();
         cleanTrain();
-    }else if(typeChooser.value === "列车"){
+    }else if(typeChooser.value === "In_train"){
         $("#ajax-station-block").hide();
         $("#ajax-spotnumber-block").hide();
         $("#ajax-train-block").show();
@@ -36,7 +36,9 @@ stationChooser.addEventListener("change", function (){
 })
 
 function displayStation(){
+    console.log(111);
     $.get("ajax/stations", function (response){
+        console.log(response);
         let inner = "<option value=''></option>";
         for(let i in response){
             inner = inner + "<option value='"+ response[i] +"'>" + response[i]  +"</option>";

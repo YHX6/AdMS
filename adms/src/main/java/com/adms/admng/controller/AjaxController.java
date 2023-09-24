@@ -31,11 +31,13 @@ public class AjaxController {
     //search bar
     @RequestMapping("/ajax/stations")
     public List<String> findAllStations(){
+        System.out.println("test111");
         return ajaxService.findAllStations();
     }
 
     @RequestMapping("/ajax/trains-stations")
     public List<String> findAllTrainsIncludingStation(){
+
         return ajaxService.findAllTrainsIncludingStation();
     }
 
