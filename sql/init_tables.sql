@@ -21,7 +21,7 @@ create table if not exists user (
 insert into user values 
 ('000000','Admin','admin','$2a$10$DMRe92jYFCUTNQgd1f9YKe4vmWcm3tTXRjBFzh.z82kXMYpEYQRZy', '','ROLE_STAFF,ROLE_MANAGER,ROLE_ADMIN', 0, 1,null),
 ('000001', 'Manager', 'manager','$2a$10$h8c.wqUwJ6k/P8.QW/PLW.5atXYu332j6ZRrrTlkxb9ikbBfMpwyW', '', 'ROLE_STAFF,ROLE_MANAGER', 0, 1, null),
-('000002', 'Staff', 'staff','$2a$10$7gjg0NDKUOrxl/3eAbLKwuoEN8542mi6gdIm901Q54vP0ITOJpF82', '', 'ROLE_STAF', 0, 1, null);
+('000002', 'Staff', 'staff','$2a$10$7gjg0NDKUOrxl/3eAbLKwuoEN8542mi6gdIm901Q54vP0ITOJpF82', '', 'ROLE_STAFF', 0, 1, null);
 
 
 create table if not exists spot(
