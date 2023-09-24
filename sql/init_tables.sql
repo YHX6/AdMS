@@ -24,6 +24,7 @@ insert into user values
 ('000002', 'Staff', 'staff','$2a$10$gIt1UXqA4VkJLsa6QI0YjemzsdqAqIjQzfTPa5vzcf.TrMglupG3a', '', 'ROLE_STAFF', 0, 1, null);
 
 
+
 create table if not exists spot(
 	`id` int not null primary key auto_increment,
     `type` varchar(20)  CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
